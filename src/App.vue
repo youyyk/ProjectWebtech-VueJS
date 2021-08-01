@@ -1,8 +1,32 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div>
+      <b-navbar>
+          <!-- <template #brand>
+              <b-navbar-item tag="router-link" :to="{ path: '/' }">
+                  <img
+                      src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
+                      alt="Lightweight UI components for Vue.js based on Bulma"
+                  >
+              </b-navbar-item>
+          </template> -->
+          <template #start>
+              <router-link class="navbar-item" to="/">Home</router-link>
+              <router-link class="navbar-item" to="/shop">Shop</router-link>
+          </template>
+          <template #end>
+              <b-navbar-item tag="div">
+                  <div class="buttons">
+                      <a class="button is-primary">
+                          <router-link class="navbar-item"  to="/signIn">Sing In</router-link>
+                      </a>
+                      <a class="button is-light">
+                          <router-link class="navbar-item"  to="/login">Login</router-link>
+                      </a>
+                  </div>
+              </b-navbar-item>
+          </template>
+      </b-navbar>
     </div>
     <router-view/>
   </div>
@@ -14,19 +38,5 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

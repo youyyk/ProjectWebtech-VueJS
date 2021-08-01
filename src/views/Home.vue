@@ -1,17 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ads-slide></ads-slide>
+    <reward-card></reward-card>
   </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import AdsSlide from '../components/AdsSlide.vue'
+import RewardCard from '../components/RewardCard.vue'
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
+    AdsSlide,
+    RewardCard
   }
 }
 </script>
+
+<style lang="scss">
+</style>
