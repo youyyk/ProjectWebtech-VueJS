@@ -18,7 +18,7 @@
               <b-navbar-item tag="div">
                   <div class="buttons">
                       <a class="button is-primary">
-                          <router-link class="navbar-item"  to="/signIn">Sing In</router-link>
+                          <router-link class="navbar-item"  to="/SignIn">Sign In</router-link>
                       </a>
                       <a class="button is-light">
                           <router-link class="navbar-item"  to="/login">Login</router-link>
@@ -39,4 +39,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
 </style>

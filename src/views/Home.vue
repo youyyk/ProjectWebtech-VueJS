@@ -4,7 +4,6 @@
     <div v-for="(reward, index) in rewardsDummy" :key="index">
       <reward-card :rewardInput="reward"></reward-card>
     </div>
-
     
   </div>
 </template>

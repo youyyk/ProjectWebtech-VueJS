@@ -8,11 +8,11 @@
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{rewardInput.name}}</p>
+          <p class="title is-4">{{ rewardInput.name }}</p>
         </div>
       </div>
       <div class="content">
-        Stock: {{rewardInput.stock}} | Point: {{rewardInput.point}}
+        Stock: {{ rewardInput.stock }} | Point: {{ rewardInput.point }}
         <br>
         <br>
         <b-button type="is-success">Get Reward</b-button>
