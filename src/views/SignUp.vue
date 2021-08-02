@@ -1,6 +1,6 @@
 <template>
-  <div class="signIn">
-      <div id="FormSingIn">
+  <div class="signUp">
+      <div id="FormSingUp">
             <section>
                 <h1>Sign Up</h1>
                     <div class="email">
@@ -17,7 +17,7 @@
                     </div>
             </section>
             <br>
-            <button @click="signUp">Sign Up</button>
+            <button @click="signup"><strong>Sign Up</strong></button>
      </div>
   </div>
 </template>
@@ -33,11 +33,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#FormSingIn{
+
+#FormSingUp{
     text-align: left;
     width: 35%;
     margin-left: 760px;
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
 h1 {
@@ -53,17 +54,18 @@ label {
     font-size: 16px;
 }
 
-input{
+input, .signUp{
     padding: 10px;
     margin: 10px;
     margin-right: 100px;
+    flex: 1;
 }
 
 button {
     background-color: #e78930; 
     border: none;
     color: white;
-    padding: 15px 100px;
+    padding: 15px 70px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -81,13 +83,13 @@ button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-.signIn {
+.signUp {
     background-image: url(	https://www.sapogo.com/Upload/Article/2021/6/bf3366dfcdca2177a5aeecde14e24350.jpg);
     position: absolute;
-    background-position-y: 80px;
+    background-position-y: 50px;
     background-position-x: 20px;
     background-repeat: no-repeat;
-    margin-top: 50px;
+    margin-top: 100px;
     top: 0%;
     object-fit: cover;
     display: flex;

@@ -11,17 +11,17 @@
               </b-navbar-item>
           </template> -->
           <template #start>
-              <router-link class="navbar-item" to="/">Home</router-link>
-              <router-link class="navbar-item" to="/shop">Shop</router-link>
+              <router-link class="navbar-item" to="/"><strong>Home</strong></router-link>
+              <router-link class="navbar-item" to="/shop"><strong>Shop</strong></router-link>
           </template>
           <template #end>
               <b-navbar-item tag="div">
                   <div class="buttons">
                       <a class="button is-primary">
-                          <router-link class="navbar-item"  to="/SignIn">Sign In</router-link>
+                          <router-link class="navbar-item"  to="/SignUp"><strong>Sign Up</strong></router-link>
                       </a>
                       <a class="button is-light">
-                          <router-link class="navbar-item"  to="/login">Login</router-link>
+                          <router-link class="navbar-item"  to="/login"><strong>Login</strong></router-link>
                       </a>
                   </div>
               </b-navbar-item>
