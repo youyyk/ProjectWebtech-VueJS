@@ -1,50 +1,48 @@
 <template>
   <div class="home">
     <ads-slide></ads-slide>
-    <div v-for="(reward, index) in rewardsDummy" :key="index">
-      <reward-card :rewardInput="reward"></reward-card>
+    <div v-for="(item, index) in itemsDummy" :key="index">
+      <item-card :itemInput="item"></item-card>
     </div>
-
-    
   </div>
+  
 </template>
 
 <script>
 import AdsSlide from '../components/AdsSlide.vue'
-import RewardCard from '../components/RewardCard.vue'
+import ItemCard from '../components/ItemCard.vue'
 export default {
-  components: {
-    AdsSlide,
-    RewardCard
+  components: { 
+    ItemCard, AdsSlide
   },
   data() {
       return {
-          rewardsDummy:[
+          itemsDummy:[
+            {
+              name: "A",
+              price: 100,
+              explain: "explain01"
+            },
+            {
+              name: "B",
+              price: 200,
+              explain: "explain02"
+            },
+            {
+              name: "C",
+              price: 500,
+              explain: "explain03"
+            },
             {
               name: "D",
-              point: 100,
-              stock: 10,
+              price: 50,
+              explain: "explain04"
             },
             {
               name: "E",
-              point: 500,
-              stock: 20,
+              price: 250,
+              explain: "explain05"
             },
-            {
-              name: "F",
-              point: 300,
-              stock: 5
-            },
-            {
-              name: "G",
-              point: 50,
-              stock: 15
-            },
-            {
-              name: "H",
-              point: 250,
-              stock: 20
-            }
           ]
       }
   }
@@ -52,4 +50,5 @@ export default {
 </script>
 
 <style lang="scss">
+
 </style>
