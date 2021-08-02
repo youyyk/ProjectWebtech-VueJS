@@ -31,6 +31,16 @@ export default {
               price: 500,
               explain: "explain03"
             },
+            {
+              name: "D",
+              price: 50,
+              explain: "explain04"
+            },
+            {
+              name: "E",
+              price: 250,
+              explain: "explain05"
+            },
           ]
       }
   }

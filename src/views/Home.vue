@@ -29,6 +29,21 @@ export default {
               name: "E",
               point: 500,
               stock: 20,
+            },
+            {
+              name: "F",
+              point: 300,
+              stock: 5
+            },
+            {
+              name: "G",
+              point: 50,
+              stock: 15
+            },
+            {
+              name: "H",
+              point: 250,
+              stock: 20
             }
           ]
       }
