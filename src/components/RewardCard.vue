@@ -7,17 +7,12 @@
     </div>
     <div class="card-content">
       <div class="media">
-        <div class="media-left">
-          <!-- <figure class="image is-48x48">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-          </figure> -->
-        </div>
         <div class="media-content">
-          <p class="title is-4">Rewars-01</p>
+          <p class="title is-4">{{rewardInput.name}}</p>
         </div>
       </div>
       <div class="content">
-        Text
+        Stock: {{rewardInput.stock}} | Point: {{rewardInput.point}}
         <br>
         <br>
         <b-button type="is-success">Get Reward</b-button>
@@ -28,7 +23,17 @@
 
 <script>
 export default {
-  
+  props:{
+    rewardInput: Object
+  },
+  data() {
+      return {
+ 
+      }
+  },
+  methods:{
+
+  }
 }
 </script>
 

@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <ads-slide></ads-slide>
-    <reward-card></reward-card>
+    <div v-for="(reward, index) in rewardsDummy" :key="index">
+      <reward-card :rewardInput="reward"></reward-card>
+    </div>
+
+    
   </div>
 </template>
 
@@ -12,6 +16,22 @@ export default {
   components: {
     AdsSlide,
     RewardCard
+  },
+  data() {
+      return {
+          rewardsDummy:[
+            {
+              name: "D",
+              point: 100,
+              stock: 10,
+            },
+            {
+              name: "E",
+              point: 500,
+              stock: 20,
+            }
+          ]
+      }
   }
 }
 </script>

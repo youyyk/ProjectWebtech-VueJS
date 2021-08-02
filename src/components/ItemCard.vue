@@ -13,13 +13,12 @@
           </figure> -->
         </div>
         <div class="media-content">
-          <p class="title is-4">Items-01</p>
+          <p class="title is-4">{{itemInput.name}}</p>
         </div>
       </div>
       <div class="content">
-        Text
-        <br>
-        <br>
+        {{itemInput.explain}}
+        <div>{{itemInput.price}}</div>
         <div>
             <b-input value="Number"></b-input><br>
             <b-button type="is-success">Add</b-button>
@@ -31,7 +30,17 @@
 
 <script>
 export default {
+  props:{
+    itemInput: Object
+  },
+  data() {
+      return {
+ 
+      }
+  },
+  methods:{
 
+  }
 }
 </script>
 
@@ -39,6 +48,6 @@ export default {
 .card{
   margin: 20px;
   width: 400px;
-  height: 560px;
+  height: 540px;
 }
 </style>
