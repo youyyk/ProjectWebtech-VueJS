@@ -20,14 +20,14 @@
             <div class="con">
                 <header class="head-form">
                     <h2>Log In</h2>
-                        <p>login here using your username and password</p>
+                        <p>login here using your email and password</p>
                 </header>
                 <br>
                 <div class="field-set">
                     <span class="input-item">
                         <i class="fa fa-user-circle"></i>
                     </span>
-                <input class="form-input" id="txt-input" type="text" placeholder="username" required>    
+                <input class="form-input" id="txt-input" type="email" placeholder="email" required>    
                 <br>
            <!-- Password -->
                 <span class="input-item">
