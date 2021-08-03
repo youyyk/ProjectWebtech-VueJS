@@ -28,7 +28,22 @@ const routes = [
     path: '/signUp',
     name: 'SignUp',
     component: () => import('../views/SignUp.vue')
-  }
+  },
+  {
+    path: '/admin-board',
+    name: 'AdminBoard',
+    component: () => import('../views/AdminBoard.vue')
+  },
+  {
+    path: '/admin-edit-items',
+    name: 'AdminEditItems',
+    component: () => import('../views/AdminEditItems.vue')
+  },
+  {
+    path: '/admin-edit-Awards',
+    name: 'AdminEditAwards',
+    component: () => import('../views/AdminEditAwards.vue')
+  },
 ]
 
 const router = new VueRouter({

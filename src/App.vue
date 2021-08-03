@@ -6,6 +6,9 @@
           <template #start>
               <router-link class="navbar-item" to="/">Home</router-link>
               <router-link class="navbar-item" to="/reward">Reward</router-link>
+              <router-link class="navbar-item" to="/admin-board">Admin-Board</router-link>
+              <router-link class="navbar-item" to="/admin-edit-items">Admin-Edit-Items</router-link>
+              <router-link class="navbar-item" to="/admin-edit-awards">Admin-Edit-Awards</router-link>
           </template>
           <template #end>
               <b-navbar-item tag="div">
