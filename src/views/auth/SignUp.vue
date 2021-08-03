@@ -3,30 +3,58 @@
       <div id="FormSingUp">
             <section>
                 <h1>Sign Up</h1>
-                    <div class="email">
-                        <label>Email</label>
-                        <input class="input is-rounded" placeholder="Email" v-model="email" type="email" >
+                    <div class="user">
+                        <label>User</label>
+                        <input class="input is-rounded" placeholder="user" v-model="form.user" type="text">
                     </div> 
                 <label>Password</label>
                     <div class="passWord">
-                        <input class="input is-rounded" type="password" placeholder="password input" password-reveal>
+                        <input class="input is-rounded" v-model="form.passWord" type="password" placeholder="password input" password-reveal>
                     </div>
                 <label>Confirm Password</label>
                     <div class="confirmPass">
-                        <input class="input is-rounded" type="password" placeholder="confirm password" password-reveal>
+                        <input class="input is-rounded" v-model="form.confirmPass" type="password" placeholder="confirm password" password-reveal>
                     </div>
             </section>
             <br>
-            <button @click="signup"><strong>Sign Up</strong></button>
+            <button @click="signUp"><strong>Sign Up</strong></button>
+                
      </div>
   </div>
 </template>
 
 <script>
+import dataSignUpStore from '@/store/dataSignUp'
 export default {
     data() {
         return {
+            form: {
+                user: '',
+                passWord: '',
+                confirmPass: ''
+            },
+
+            newUser: 'baitoey'
             
+        }
+    },
+    methods: {
+        clearForm() {
+            this.form = {
+                user: '',
+                passWord: '',
+                confirmPass: ''
+            }
+        },
+        signUp() {
+            let payload = {
+            user: this.form.user,
+            passWord: this.form.passWord,
+            confirmPass: this.form.confirmPass
+        }
+            dataSignUpStore.dispatch('signUp', payload)
+            console.log(payload)
+            this.clearForm()
         }
     }
 }
@@ -38,15 +66,16 @@ export default {
     text-align: left;
     width: 35%;
     margin-left: 760px;
-    margin-top: 40px;
+    // margin-top: 10px;
 }
 
 h1 {
     text-align: center;
     font-size: 40px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
     border-bottom: 4px solid #f75726;
+    margin-top: 40px;
 }
 
 label {
@@ -89,11 +118,10 @@ button:hover {
     background-position-y: 50px;
     background-position-x: 20px;
     background-repeat: no-repeat;
-    margin-top: 100px;
+    margin-top: 70px;
     top: 0%;
     object-fit: cover;
     display: flex;
 }
-
 
 </style>
