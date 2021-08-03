@@ -1,19 +1,4 @@
 <template>
-  <!-- <div class="login">
-      <div id="FormLogin">
-            <section>
-                <body>
-                    <b-field label="Email">
-                    <b-input></b-input>
-                </b-field>
-
-                <b-field label="Password">
-                    <b-input></b-input>
-                </b-field>
-                </body>
-            </section>
-     </div>
-  </div> -->
     <div class="overlay">
         <body>
         <form>
