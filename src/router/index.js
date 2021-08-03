@@ -10,9 +10,9 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/shop',
-    name: 'Shop',
-    component: () => import('../views/Shop.vue')
+    path: '/reward',
+    name: 'Reward',
+    component: () => import('../views/Reward.vue')
   },
   {
     path: '/login',
@@ -23,7 +23,12 @@ const routes = [
     path: '/signIn',
     name: 'SignIn',
     component: () => import('../views/SignIn.vue')
-  }
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../views/Cart.vue')
+  },
 ]
 
 const router = new VueRouter({

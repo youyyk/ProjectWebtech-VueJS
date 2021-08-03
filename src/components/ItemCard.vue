@@ -49,5 +49,8 @@ export default {
   margin: 20px;
   width: 400px;
   height: 540px;
+  position: relative;
+  float: left;
+  margin-left: 47px;
 }
 </style>
