@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/auth/Login.vue')
   },
   {
     path: '/cart',
@@ -44,6 +44,12 @@ const routes = [
     name: 'AdminEditAwards',
     component: () => import('../views/AdminEditAwards.vue')
   },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: () => import('../views/auth/Logout.vue')
+  }
+
 ]
 
 const router = new VueRouter({

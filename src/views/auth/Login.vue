@@ -1,42 +1,29 @@
 <template>
-  <!-- <div class="login">
-      <div id="FormLogin">
-            <section>
-                <body>
-                    <b-field label="Email">
-                    <b-input></b-input>
-                </b-field>
-
-                <b-field label="Password">
-                    <b-input></b-input>
-                </b-field>
-                </body>
-            </section>
-     </div>
-  </div> -->
     <div class="overlay">
         <body>
-        <form>
+        <form @submit.prevent="login">
             <div class="con">
                 <header class="head-form">
                     <h2>Log In</h2>
-                        <p>login here using your email and password</p>
+                        <p>login here using your user and password</p>
                 </header>
                 <br>
                 <div class="field-set">
                     <span class="input-item">
                         <i class="fa fa-user-circle"></i>
                     </span>
-                <input class="form-input" id="txt-input" type="email" placeholder="email" required>    
+                <input class="form-input" id="txt-input" v-model="form.user" type="text" placeholder="user" required>    
                 <br>
            <!-- Password -->
                 <span class="input-item">
                     <i class="fa fa-key"></i>
                 </span>
             <!-- Password Input -->
-                <input class="form-input" type="password" placeholder="password" id="pwd"  name="password" required>
+                <input class="form-input" type="password" v-model="form.password" placeholder="password" id="pwd"  name="password" required>
             <!--button LogIn -->
-                <button class="log-in"> Log In </button>
+            <div>
+                <button type="submit"> Log In </button>
+            </div>
             </div>
             </div>
         </form>
@@ -45,10 +32,31 @@
 </template>
 
 <script>
+// import AuthService from '@/services/AuthService'
+import AuthUser from '@/store/AuthUser'
 export default {
     data() {
         return {
-            
+            form: {
+                user: '',
+                password: ''
+            }
+        }
+    },
+    methods: {
+        async login(){
+            // let res = await AuthUser.login(this.form)
+            let res = await AuthUser.dispatch('login',this.form)
+            console.log(res);
+            if (res.success){
+                this.$swal("Login Success", `Welcome, ${res.user.username}`, "success")
+                // alert("Welcome")
+                this.$router.push('/') //กด login แล้วไปหน้า home
+            }
+            else{
+                this.$swal("Login Failed", res.message, "error");
+                //alert(res.message)
+            }
         }
     }
 }

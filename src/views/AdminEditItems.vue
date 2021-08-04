@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import ItemsAPI from "@/store/ItemsAPI"
+import ItemApiStore from "@/store/ItemApi"
 export default {
     data(){
         return{
@@ -41,8 +41,8 @@ export default {
     },
     methods: {
         async fetchItems() {
-            await ItemsAPI.dispatch('fetchItems')
-            this.items = ItemsAPI.getters.items
+            await ItemApiStore.dispatch('fetchItems')
+            this.items = ItemApiStore.getters.items
             console.log(this.items)
         },
         // checkSwitch(tmp){

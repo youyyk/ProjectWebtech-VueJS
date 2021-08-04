@@ -3,11 +3,13 @@
     <h1>Reward</h1>
     <div v-for="(reward, index) in rewardsDummy" :key="index">
       <reward-card :rewardInput="reward"></reward-card>
+
     </div>
   </div>
 </template>
 
 <script>
+import RewardApiStore from '@/store/AwardApi'
 import RewardCard from '../components/RewardCard.vue'
 export default {
   components: {
@@ -16,34 +18,17 @@ export default {
   },
   data() {
       return {
-          rewardsDummy:[
-            {
-              name: "D",
-              point: 100,
-              stock: 10,
-            },
-            {
-              name: "E",
-              point: 500,
-              stock: 20,
-            },
-            {
-              name: "F",
-              point: 300,
-              stock: 5
-            },
-            {
-              name: "G",
-              point: 50,
-              stock: 15
-            },
-            {
-              name: "H",
-              point: 250,
-              stock: 20
-            }
-          ]
+          rewardsDummy:[]
       }
+  },
+  created(){
+    this.fetchReward()
+  },
+  methods:{
+    async fetchReward(){
+      await RewardApiStore.dispatch('fetchAward')
+      this.rewardsDummy = RewardApiStore.getters.awards
+    }
   }
 }
 
