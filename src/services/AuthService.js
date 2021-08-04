@@ -75,11 +75,11 @@ export default {
         localStorage.removeItem(auth_key)
     },
 
-    async signUp({ user, password }){
+    async signUp({ username, email, password }){
         try {
-            let url = `${api_endpoint}/auth/local/signUp`
+            let url = `${api_endpoint}/auth/local/register`
             let body = {
-                user: user,
+                username: username,
                 email: email,
                 password: password
             }

@@ -6,15 +6,20 @@
                 <h1>Sign Up</h1>
                     <div class="user">
                         <label>User</label>
-                        <input class="input is-rounded" placeholder="user" v-model="form.user" type="text">
+                        <input class="input is-rounded" placeholder="user" v-model="form.username" type="text">
                     </div> 
+
+                <div class="email">
+                    <label>Email</label>
+                    <input class="input is-rounded" placeholder="email" v-model="form.email" type="email">
+                </div> 
                 <label>Password</label>
                     <div class="passWord">
-                        <input class="input is-rounded" v-model="form.passWord" type="password" placeholder="password input" password-reveal>
+                        <input class="input is-rounded" v-model="form.password" type="password" placeholder="password input" password-reveal>
                     </div>
                 <label>Confirm Password</label>
                     <div class="confirmPass">
-                        <input class="input is-rounded" v-model="form.confirmPass" type="password" placeholder="confirm password" password-reveal>
+                        <input class="input is-rounded" v-model="form.confirmpassword" type="password" placeholder="confirm password" password-reveal>
                     </div>
             </section>
             <br>
@@ -31,27 +36,30 @@ export default {
     data() {
         return {
             form: {
-                user: '',
-                passWord: '',
-                confirmPass: ''
+                username: '',
+                password: '',
+                confirmpassword: '',
+                email: ''
             },
         }
     },
     methods: {
         clearForm() {
             this.form = {
-                user: '',
-                passWord: '',
-                confirmPass: ''
+                username: '',
+                password: '',
+                confirmpassword: '',
+                email: ''
             }
         },
         async signUp(){
             // let res = await AuthService.register(this.form)
             let res = await AuthUser.dispatch('signUp',this.form)
             if(res.success){
-                this.$swal("sign up Success", `Welcome ${res.user.user}`, "success")
+                this.$swal("sign up Success", `Welcome ${res.user.username}`, "success")
                 this.$router.push("/")
-            }else{
+            } 
+            else {
                 this.$swal("sign up Failed", res.message, "error")
             }
         }
@@ -99,7 +107,7 @@ button {
     display: inline-block;
     font-size: 20px;
     margin: 4px 2px;
-    margin-top: 10px;
+    margin-top: 1px;
     margin-left: 80px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; 
@@ -117,7 +125,7 @@ button:hover {
     background-position-y: 50px;
     background-position-x: 20px;
     background-repeat: no-repeat;
-    margin-top: 70px;
+    margin-top: 30px;
     top: 0%;
     object-fit: cover;
     display: flex;
