@@ -3,7 +3,7 @@
     <ads-slide></ads-slide>
     <div v-for="(item, index) in itemsDummy" :key="index">
       <item-card :itemInput="item"></item-card>
-      
+
     </div>
   </div>
   

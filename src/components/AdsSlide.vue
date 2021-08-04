@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  #AdsSlide{
-      width: 100%;
-  }
+#AdsSlide{
+    width: 100%;
+}
 </style>
