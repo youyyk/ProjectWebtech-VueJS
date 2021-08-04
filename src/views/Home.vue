@@ -3,6 +3,7 @@
     <ads-slide></ads-slide>
     <div v-for="(reward, index) in rewardsDummy" :key="index">
       <reward-card :rewardInput="reward"></reward-card>
+
     </div>
     
   </div>
@@ -14,7 +15,7 @@ import RewardCard from '../components/RewardCard.vue'
 export default {
   components: {
     AdsSlide,
-    RewardCard
+    RewardCard,
   },
   data() {
       return {

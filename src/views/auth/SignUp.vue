@@ -2,6 +2,7 @@
   <div class="signUp">
       <div id="FormSingUp">
             <section>
+
                 <h1>Sign Up</h1>
                     <div class="user">
                         <label>User</label>
@@ -24,7 +25,8 @@
 </template>
 
 <script>
-import dataSignUpStore from '@/store/dataSignUp'
+// import dataApiStore from '@/store/dataApi'
+import AuthUser from '@/store/AuthUser'
 export default {
     data() {
         return {
@@ -33,9 +35,6 @@ export default {
                 passWord: '',
                 confirmPass: ''
             },
-
-            newUser: 'baitoey'
-            
         }
     },
     methods: {
@@ -46,15 +45,15 @@ export default {
                 confirmPass: ''
             }
         },
-        signUp() {
-            let payload = {
-            user: this.form.user,
-            passWord: this.form.passWord,
-            confirmPass: this.form.confirmPass
-        }
-            dataSignUpStore.dispatch('signUp', payload)
-            console.log(payload)
-            this.clearForm()
+        async signUp(){
+            // let res = await AuthService.register(this.form)
+            let res = await AuthUser.dispatch('signUp',this.form)
+            if(res.success){
+                this.$swal("sign up Success", `Welcome ${res.user.user}`, "success")
+                this.$router.push("/")
+            }else{
+                this.$swal("sign up Failed", res.message, "error")
+            }
         }
     }
 }

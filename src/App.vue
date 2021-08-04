@@ -17,12 +17,23 @@
           <template #end>
               <b-navbar-item tag="div">
                   <div class="buttons">
-                      <a class="button is-primary">
-                          <router-link class="navbar-item"  to="/SignUp"><strong>Sign Up</strong></router-link>
+                      <div v-if="!isAuthen()">
+                        <a class="button is-primary">
+                        <router-link class="navbar-item"  to="/SignUp"><strong>Sign Up</strong></router-link>
                       </a>
-                      <a class="button is-light">
-                          <router-link class="navbar-item"  to="/login"><strong>Login</strong></router-link>
+                      </div>
+
+                      <div v-if="!isAuthen()">
+                        <a class="button is-light">
+                        <router-link class="navbar-item"  to="/login"><strong>Login</strong></router-link>
                       </a>
+                      </div>
+
+                      <div v-if="isAuthen()">
+                        <a class="button is-light">
+                        <router-link class="navbar-item"  to="/logout"><strong>Logout</strong></router-link>
+                      </a>
+                      </div>
                   </div>
               </b-navbar-item>
           </template>
@@ -31,6 +42,17 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import AuthUser from '@/store/AuthUser'
+export default {
+  methods:{
+    isAuthen(){
+      return AuthUser.getters.isAuthen
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

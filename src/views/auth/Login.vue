@@ -32,7 +32,8 @@
 </template>
 
 <script>
-import AuthService from '@/services/AuthService'
+// import AuthService from '@/services/AuthService'
+import AuthUser from '@/store/AuthUser'
 export default {
     data() {
         return {
@@ -44,13 +45,13 @@ export default {
     },
     methods: {
         async login(){
-            let res = await AuthService.login(this.form)
-            // let res = await AuthUser.dispatch('login',this.form)
-            // console.log(res);
+            // let res = await AuthUser.login(this.form)
+            let res = await AuthUser.dispatch('login',this.form)
+            console.log(res);
             if (res.success){
                 this.$swal("Login Success", `Welcome, ${res.user.username}`, "success")
-                alert("Welcome")
-                // this.$router.push('/home') //กด login แล้วไปหน้า home
+                // alert("Welcome")
+                this.$router.push('/') //กด login แล้วไปหน้า home
             }
             else{
                 this.$swal("Login Failed", res.message, "error");

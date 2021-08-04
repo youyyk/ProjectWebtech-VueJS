@@ -4,7 +4,7 @@ import AuthService from '@/services/AuthService'
 
 Vue.use(Vuex)
 
-let auth_key = "auth-pokedex"
+let auth_key = "auth-shope"
 let auth = JSON.parse(localStorage.getItem(auth_key))
 
 const initialState = {
@@ -35,17 +35,17 @@ export default new Vuex.Store({
           }
           return res
       },
-    //   async logout({commit}){
-    //     AuthService.logout()
-    //     commit('logoutSuccess')
-    //   },
-    //   async register({commit}, {username, email, password }){
-    //       let res = await AuthService.register({ username, email, password})
-    //       if(res.success){
-    //           commit("loginSuccess", res.user, res.jwt)
-    //       }
-    //       return res
-    //   }
+      async logout({commit}){
+        AuthService.logout()
+        commit('logoutSuccess')
+      },
+      async signUp({commit}, {user , password}){
+          let res = await AuthService.signUp({ user, email, password})
+          if(res.success){
+              commit("loginSuccess", res.user, res.jwt)
+          }
+          return res
+      }
   },
   getters:{
     user:(state) => state.user,
