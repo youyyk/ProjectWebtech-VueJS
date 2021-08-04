@@ -10,6 +10,13 @@
             </b-field>
         </div>
         <br>
+        <section id="sortType">
+            <b-checkbox-button v-model="checkBoxSort" @input="sortDataUsers()">
+                <div v-if="this.checkBoxSort===true">Sort by Point Get</div>
+                <div v-else>Sort by Point Used</div>
+            </b-checkbox-button>
+        </section>
+        <br>
         <div id="tableBoard">
             <table class="table is-hoverable is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
@@ -38,28 +45,46 @@ import DataUsersAPI from "@/store/DataUsersAPI"
 export default {
     data(){
         return{
-            // default sort by Point Time
             dataUsers: [],
             datesChoose: [],
+            checkBoxSort: false
         }
     },
     created(){
         this.fetchDataUsers()
+        this.sortDataUsers()
     },
     methods: {
         async fetchDataUsers() {
             await DataUsersAPI.dispatch('fetchDataUsers')
             this.dataUsers = DataUsersAPI.getters.dataUsers
-            console.log(this.dataUsers)
             for (let i=0; i< this.dataUsers.length; i++){
                 this.dataUsers[i].Total_Buy =  (this.dataUsers[i].Total_Buy*0.02)+this.dataUsers[i].point_used
             }
+            this.checkBoxSort = false
+            this.sortDataUsers()
+        },
+        async sortDataUsers(){
+            if(this.checkBoxSort===false){
+                this.dataUsers.sort((a,b) =>{
+                    return b.point_used-a.point_used
+                })
+                return
+            }
+            this.dataUsers.sort((a,b) =>{
+                return b.Total_Buy-a.Total_Buy
+            })
         },
     }
 }
 </script>
 
 <style scoped lang="scss">
+#sortType{
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
 #pickDate{
     width: 50%;
     margin-left: auto;

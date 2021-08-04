@@ -3,7 +3,6 @@
     <ads-slide></ads-slide>
     <div v-for="(item, index) in itemsDummy" :key="index">
       <item-card :itemInput="item"></item-card>
-
     </div>
   </div>
   
@@ -15,7 +14,8 @@ import AdsSlide from '../components/AdsSlide.vue'
 import ItemCard from '../components/ItemCard.vue'
 export default {
   components: { 
-    ItemCard, AdsSlide
+    ItemCard,
+    AdsSlide
   },
   data() {
       return {
@@ -23,11 +23,11 @@ export default {
       }
   },
   created(){
-    this.fetchItem()
+    this.fetchItems()
   },
   methods:{
-    async fetchItem(){
-      await ItemApiStore.dispatch('fetchItem')
+    async fetchItems(){
+      await ItemApiStore.dispatch('fetchItems')
       this.itemsDummy = ItemApiStore.getters.items
     }
   }

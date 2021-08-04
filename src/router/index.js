@@ -35,14 +35,14 @@ const routes = [
     component: () => import('../views/AdminBoard.vue')
   },
   {
-    path: '/admin-edit-items',
+    path: '/admin-items',
     name: 'AdminEditItems',
-    component: () => import('../views/AdminEditItems.vue')
+    component: () => import('../views/AdminItems.vue')
   },
   {
-    path: '/admin-edit-Awards',
+    path: '/admin-Awards',
     name: 'AdminEditAwards',
-    component: () => import('../views/AdminEditAwards.vue')
+    component: () => import('../views/AdminAwards.vue')
   },
   {
     path: '/logout',

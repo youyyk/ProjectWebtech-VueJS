@@ -3,7 +3,6 @@
     <h1>Reward</h1>
     <div v-for="(reward, index) in rewardsDummy" :key="index">
       <reward-card :rewardInput="reward"></reward-card>
-
     </div>
   </div>
 </template>
@@ -13,7 +12,6 @@ import RewardApiStore from '@/store/AwardApi'
 import RewardCard from '../components/RewardCard.vue'
 export default {
   components: {
-    AdsSlide,
     RewardCard
   },
   data() {
@@ -22,11 +20,11 @@ export default {
       }
   },
   created(){
-    this.fetchReward()
+    this.fetchRewards()
   },
   methods:{
-    async fetchReward(){
-      await RewardApiStore.dispatch('fetchAward')
+    async fetchRewards(){
+      await RewardApiStore.dispatch('fetchAwards')
       this.rewardsDummy = RewardApiStore.getters.awards
     }
   }

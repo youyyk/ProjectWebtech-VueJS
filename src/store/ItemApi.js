@@ -17,13 +17,43 @@ export default new Vuex.Store({
     fetch(state, { res }){
         state.data = res.data
     },
+    add(state, payload){
+      state.data.push(payload)
+    }
   },
   actions: {
-    async fetchItem({ commit }){
+    async fetchItems({ commit }){
       let res= await Axios.get(api_endpoint + "/items")
-
       commit('fetch', { res })
-    }
+      console.log("Fetch items API");
+    },
+    async addItem({commit},payload){
+      let url = api_endpoint+"/items"
+      let body = {
+        name: payload.name,
+        price: payload.price,
+        explain: payload.explain,
+        status: payload.status
+      }
+      let res = await Axios.post(url,body)
+      console.log("Add item");
+      console.log(res.data)
+      commit("add", res.data)
+    },
+    async editItem({commit}, payload){
+      let url = api_endpoint+"/items/"+(payload.index+1)
+      console.log(url);
+      let body = {
+        name: payload.name,
+        price: payload.price,
+        explain: payload.explain,
+        status: payload.status
+      }
+      console.log(body);
+      let res = await Axios.put(url, body)
+      console.log("Edit item");
+      console.log(res.data)
+    },
   },
   modules: {
   }

@@ -5,27 +5,27 @@
                 <thead>
                     <tr>
                         <th>#id</th>
-                        <th>Name Awards</th>
-                        <th>Point</th>
-                        <th>Stock</th>
+                        <th>Name Item</th>
+                        <th>Price</th>
+                        <th>Explain</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(award, index) in awards" v-bind:key = "index">
-                        <th>{{award.id}}</th>
-                        
-                        <td v-if="index !== editIndex">{{award.name}}</td>
+                    <tr v-for="(item, index) in items" v-bind:key = "index">
+                        <th>{{item.id}}</th>
+
+                        <td v-if="index !== editIndex">{{item.name}}</td>
                         <td v-else><b-input size="is-small" placeholder="Name" v-model="form.name"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{award.point}}</td>
-                        <td v-else><b-input size="is-small" placeholder="Point" v-model="form.point"></b-input></td>
+                        <td v-if="index !== editIndex">{{item.price}}</td>
+                        <td v-else><b-input size="is-small" placeholder="Name" v-model="form.price"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{award.stock}}</td>
-                        <td v-else><b-input size="is-small" placeholder="Stock Number" v-model="form.stock"></b-input></td>
+                        <td v-if="index !== editIndex">{{item.explain}}</td>
+                        <td v-else><b-input size="is-small" placeholder="Name" v-model="form.explain"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{award.status}}</td>
+                        <td v-if="index !== editIndex">{{item.status}}</td>
                         <td v-else>
                             <b-select placeholder="Status" v-model="form.status">
                                 <option value=true>ON</option>
@@ -33,10 +33,10 @@
                             </b-select>
                         </td>
                         <td v-if="index !== editIndex">
-                            <b-button @click="openForm(index, award)" size="is-small" type="is-danger" outlined>Edit</b-button>
+                            <b-button @click="openForm(index, item)" size="is-small" type="is-danger" outlined>Edit</b-button>
                         </td>
-                        <td v-else id="EditButtonGrop">
-                            <b-button @click="editAward()" size="is-small" type="is-warning">Confirm</b-button>&nbsp;
+                        <td v-else id="EditButtonGroup">
+                            <b-button @click="editItem()" size="is-small" type="is-warning">Confirm</b-button>&nbsp;
                             <b-button @click="closeForm()" size="is-small" type="is-warning">close</b-button>
                         </td>
                     </tr>
@@ -47,66 +47,57 @@
 </template>
 
 <script>
-import RewardApiStore from "@/store/AwardApi"
+import ItemApiStore from "@/store/ItemApi"
 export default {
     data(){
         return{
-            awards: [],
+            items: [],
             editIndex: -1,
             form: {
-                id: "",
                 name: "",
-                point: 0,
-                stock: 0,
+                price: 0,
+                explain: "",
                 status: true
             }
-            // isSwitched: true
         }
     },
     created(){
-        this.fetchAwards()
+        this.fetchItems()
     },
     methods: {
-        async fetchAwards() {
-            await RewardApiStore.dispatch('fetchAwards')
-            this.awards = RewardApiStore.getters.awards
+        async fetchItems() {
+            await ItemApiStore.dispatch('fetchItems')
+            this.items = ItemApiStore.getters.items
         },
         openForm(index, award){
             this.editIndex = index
             let cloned = JSON.parse(JSON.stringify(award))
-            this.form.id = cloned.id
             this.form.name = cloned.name
-            this.form.point = cloned.point
-            this.form.stock = cloned.stock
+            this.form.price = cloned.price
+            this.form.explain = cloned.explain
             this.form.status = cloned.status
         },
         closeForm(){
             this.editIndex = -1
             this.form= {
-                id: "",
                 name: "",
-                point: 0,
-                stock: 0,
+                price: 0,
+                explain: "",
                 status: true
             }
         },
-        async editAward(){
+        async editItem(){
             let payload={
                 index: this.editIndex,
                 name: this.form.name.trim(),
-                point: parseInt(this.form.point),
-                stock: parseInt(this.form.stock),
+                price: parseInt(this.form.price),
+                explain: this.form.explain.trim(),
                 status: this.form.status
             }
-            await RewardApiStore.dispatch("editAward",payload)
-            this.awards = RewardApiStore.getters.awards
+            await ItemApiStore.dispatch("editItem",payload)
             this.closeForm()
-            this.fetchAwards()
+            this.fetchItems()
         }
-        // checkSwitch(tmp){
-        //     this.isSwitched = tmp.status ? true : false
-        //     return true
-        // }
     }
 }
 </script>

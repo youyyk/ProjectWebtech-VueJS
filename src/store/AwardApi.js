@@ -25,7 +25,20 @@ export default new Vuex.Store({
     async fetchAwards({commit}){
       let res = await Axios.get(api_endpoint+"/awards")
       commit('fetch', {res})
-      console.log("Fetch awards API");
+      console.log("Fetch awards API")
+    },
+    async addAward({commit},payload){
+      let url = api_endpoint+"/awards"
+      let body = {
+        name: payload.name,
+        point: payload.point,
+        stock: payload.stock,
+        status: payload.status
+      }
+      let res = await Axios.post(url,body)
+      console.log("Add award");
+      console.log(res.data)
+      commit("add", res.data)
     },
     async editAward({commit}, payload){
       let url = api_endpoint+"/awards/"+(payload.index+1)
@@ -36,7 +49,7 @@ export default new Vuex.Store({
         status: payload.status
       }
       let res = await Axios.put(url, body)
-      console.log("Edit awards");
+      console.log("Edit award");
       console.log(res.data)
     }
   },
