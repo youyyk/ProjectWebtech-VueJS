@@ -51,7 +51,7 @@ export default new Vuex.Store({
       let res = await Axios.put(url, body)
       console.log("Edit award");
       console.log(res.data)
-    }
+    },
   },
   modules: {
   }

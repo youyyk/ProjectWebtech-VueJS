@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import AdminTableAward from '../components/adminTable/AdminTableAward.vue'
-import PopUpCreateAward from '../components/adminTable/PopUpCreateAward.vue'
+import AdminTableAward from '../../components/adminTable/AdminTableAward.vue'
+import PopUpCreateAward from '../../components/adminTable/PopUpCreateAward.vue'
 export default {
   components: { AdminTableAward, PopUpCreateAward },
     data(){

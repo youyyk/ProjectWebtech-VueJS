@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import AdminTableItem from '../components/adminTable/AdminTableItem.vue'
-import PopUpCreateItem from '../components/adminTable/PopUpCreateItem.vue'
+import AdminTableItem from '../../components/adminTable/AdminTableItem.vue'
+import PopUpCreateItem from '../../components/adminTable/PopUpCreateItem.vue'
 export default {
   components: { PopUpCreateItem, AdminTableItem },
     data(){

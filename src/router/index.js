@@ -30,24 +30,24 @@ const routes = [
     component: () => import('../views/SignUp.vue')
   },
   {
-    path: '/admin-board',
-    name: 'AdminBoard',
-    component: () => import('../views/AdminBoard.vue')
-  },
-  {
-    path: '/admin-items',
-    name: 'AdminEditItems',
-    component: () => import('../views/AdminItems.vue')
-  },
-  {
-    path: '/admin-Awards',
-    name: 'AdminEditAwards',
-    component: () => import('../views/AdminAwards.vue')
-  },
-  {
     path: '/logout',
     name: 'Logout',
     component: () => import('../views/auth/Logout.vue')
+  },
+  {
+    path: '/admin/board',
+    name: 'AdminBoard',
+    component: () => import('../views/admin/AdminBoard.vue')
+  },
+  {
+    path: '/admin/items',
+    name: 'AdminEditItems',
+    component: () => import('../views/admin/AdminItems.vue')
+  },
+  {
+    path: '/admin/Awards',
+    name: 'AdminEditAwards',
+    component: () => import('../views/admin/AdminAwards.vue')
   }
 
 ]
