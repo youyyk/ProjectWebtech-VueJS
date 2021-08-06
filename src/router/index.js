@@ -10,9 +10,9 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/reward',
-    name: 'Reward',
-    component: () => import('../views/Reward.vue')
+    path: '/signUp',
+    name: 'SignUp',
+    component: () => import('../views/auth/SignUp.vue')
   },
   {
     path: '/login',
@@ -20,19 +20,19 @@ const routes = [
     component: () => import('../views/auth/Login.vue')
   },
   {
-    path: '/cart',
-    name: 'Cart',
-    component: () => import('../views/Cart.vue')
-  },
-  {
-    path: '/signUp',
-    name: 'SignUp',
-    component: () => import('../views/SignUp.vue')
-  },
-  {
     path: '/logout',
     name: 'Logout',
     component: () => import('../views/auth/Logout.vue')
+  },
+  {
+    path: '/reward',
+    name: 'Reward',
+    component: () => import('../views/Reward.vue')
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../views/Cart.vue')
   },
   {
     path: '/admin/board',

@@ -11,7 +11,9 @@ export default {
     isAuthen(){
         return (user !== "") && (jwt !== "")
     },
-
+    isAdmin(){
+        return this.isAuthen() && (user.role.type === "admin")
+    },
     getApiHeader(){
         if(jwt !== ""){
             return{
@@ -44,7 +46,8 @@ export default {
                 return {
                     success: true,
                     user: res.data.user,
-                    jwt: res.data.jwt
+                    jwt: res.data.jwt,
+                    type: this.isAdmin(),
                 }
             }else{
                 console.log("NOT 200", res);

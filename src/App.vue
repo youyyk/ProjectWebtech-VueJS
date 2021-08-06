@@ -2,28 +2,16 @@
   <div id="app">
     <div>
       <b-navbar>
-
           <template #start>
               <router-link class="navbar-item" to="/">Home</router-link>
               <router-link class="navbar-item" to="/reward">Reward</router-link>
-              <router-link class="navbar-item" to="/admin/board">Admin-Board</router-link>
-              <router-link class="navbar-item" to="/admin/items">Admin-Edit-Items</router-link>
-              <router-link class="navbar-item" to="/admin/awards">Admin-Edit-Awards</router-link>
+              <router-link v-if="isAuthen()" class="navbar-item" to="/admin/board">Admin-Board</router-link>
+              <router-link v-if="isAuthen()" class="navbar-item" to="/admin/items">Admin-Edit-Items</router-link>
+              <router-link v-if="isAuthen()" class="navbar-item" to="/admin/awards">Admin-Edit-Awards</router-link>
           </template>
           <template #end>
               <b-navbar-item tag="div">
                   <div class="buttons">
-                      <!-- <div v-if="!isAuthen()">
-                        <a class="button is-primary">
-                        <router-link class="navbar-item"  to="/SignUp"><strong>Sign Up</strong></router-link>
-                      </a>
-                      </div>
-
-                      <div v-if="!isAuthen()">
-                        <a class="button is-light">
-                        <router-link class="navbar-item"  to="/login"><strong>Login</strong></router-link>
-                      </a>
-                      </div> -->
                       <div id="icon" v-if="isAuthen()">
                         <a>
                           <i>
@@ -38,7 +26,7 @@
                       
                       <div v-if="!isAuthen()">
                         <a class="button is-primary">
-                        <router-link class="navbar-item"  to="/SignUp"><strong>Sign Up</strong></router-link>
+                        <router-link class="navbar-item"  to="/signUp"><strong>Sign Up</strong></router-link>
                         </a>
                       </div>
 
@@ -64,10 +52,16 @@
 <script>
 import AuthUser from '@/store/AuthUser'
 export default {
+  data() {
+      return {
+      }
+  },
+  created(){
+  },
   methods:{
     isAuthen(){
       return AuthUser.getters.isAuthen
-    }
+    },
   }
 }
 </script>

@@ -14,11 +14,12 @@
         </div>
       </div>
       <div class="content">
-        {{itemInput.explain}}
-        <div>{{itemInput.price}}</div>
+        <div>{{itemInput.explain}}</div>
+        <br>
+        <div>{{itemInput.price}} Bath</div>
+        <br>
         <div>
-            <b-input value="Number"></b-input><br>
-            <b-button type="is-success">Add</b-button>
+            <b-button type="is-success">Add to Cart</b-button>
         </div>
       </div>
     </div>

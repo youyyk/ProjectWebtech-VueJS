@@ -2,7 +2,7 @@
   <div class="reward">
     <h1>Reward</h1>
     <div v-for="(reward, index) in rewardsDummy" :key="index">
-      <reward-card :rewardInput="reward"></reward-card>
+      <reward-card v-if="reward.status && reward.stock > 0" :rewardInput="reward"></reward-card>
     </div>
   </div>
 </template>

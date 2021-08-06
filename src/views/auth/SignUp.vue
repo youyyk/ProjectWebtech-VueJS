@@ -3,16 +3,16 @@
     
     <p>Sign up</p>
         <section>
-            <!--username-->
-            <div class="user-box">
-                <input type="text"  v-model="form.username"  required>
-                <label>Username</label>
-            </div>
-
             <!--email-->
             <div class="user-box">
                 <input type="email"  v-model="form.email"  required>
                 <label>Email</label>
+            </div>
+
+            <!--username-->
+            <div class="user-box">
+                <input type="text"  v-model="form.username"  required>
+                <label>Username</label>
             </div>
 
             <!--password-->
@@ -32,7 +32,6 @@
 </template>
 
 <script>
-// import dataApiStore from '@/store/dataApi'
 import AuthUser from '@/store/AuthUser'
 export default {
     data() {
@@ -59,11 +58,11 @@ export default {
             if(this.form.password === this.form.confirmpassword){
                 let res = await AuthUser.dispatch('signUp',this.form)
                 if(res.success){
-                    this.$swal("sign up Success", `Welcome ${res.user.username}`, "success")
+                    this.$swal("Sign up Success", `Welcome ${res.user.username}`, "success")
                     this.$router.push("/")
                 } 
                 else {
-                    this.$swal("sign up Failed", res.message, "error")
+                    this.$swal("Sign up Failed", res.message, "error")
                 }
             }
             else{

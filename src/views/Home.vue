@@ -2,7 +2,7 @@
   <div class="home">
     <ads-slide></ads-slide>
     <div v-for="(item, index) in itemsDummy" :key="index">
-      <item-card :itemInput="item"></item-card>
+      <item-card v-if="item.status" :itemInput="item"></item-card>
     </div>
   </div>
   
