@@ -29,7 +29,6 @@
             <button @click="signUp"><strong>Sign Up</strong></button>
   </section>
   </div>
-
 </template>
 
 <script>
@@ -56,12 +55,12 @@ export default {
             }
         },
         async signUp(){
+            // let res = await AuthService.register(this.form)
             if(this.form.password === this.form.confirmpassword){
-              let res = await AuthUser.dispatch('signUp',this.form)
-              console.log(res.success);
+                let res = await AuthUser.dispatch('signUp',this.form)
                 if(res.success){
-                  this.$swal("sign up Success", `Welcome ${res.user.username}`, "success")
-                  this.$router.push("/")
+                    this.$swal("sign up Success", `Welcome ${res.user.username}`, "success")
+                    this.$router.push("/")
                 } 
                 else {
                     this.$swal("sign up Failed", res.message, "error")
@@ -159,3 +158,4 @@ button:hover {
               0 0 100px #03e9f4;
 }
 </style>
+

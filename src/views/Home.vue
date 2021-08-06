@@ -1,37 +1,35 @@
 <template>
   <div class="home">
     <ads-slide></ads-slide>
-    <div v-for="(reward, index) in rewardsDummy" :key="index">
-      <reward-card :rewardInput="reward"></reward-card>
-
+    <div v-for="(item, index) in itemsDummy" :key="index">
+      <item-card :itemInput="item"></item-card>
     </div>
-    
   </div>
+  
 </template>
 
 <script>
+import ItemApiStore from '@/store/ItemApi'
 import AdsSlide from '../components/AdsSlide.vue'
-import RewardCard from '../components/RewardCard.vue'
+import ItemCard from '../components/ItemCard.vue'
 export default {
-  components: {
-    AdsSlide,
-    RewardCard,
+  components: { 
+    ItemCard,
+    AdsSlide
   },
   data() {
       return {
-          rewardsDummy:[
-            {
-              name: "D",
-              point: 100,
-              stock: 10,
-            },
-            {
-              name: "E",
-              point: 500,
-              stock: 20,
-            }
-          ]
+          itemsDummy: []
       }
+  },
+  created(){
+    this.fetchItems()
+  },
+  methods:{
+    async fetchItems(){
+      await ItemApiStore.dispatch('fetchItems')
+      this.itemsDummy = ItemApiStore.getters.items
+    }
   }
 }
 </script>

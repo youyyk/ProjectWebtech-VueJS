@@ -10,14 +10,19 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/shop',
-    name: 'Shop',
-    component: () => import('../views/Shop.vue')
+    path: '/reward',
+    name: 'Reward',
+    component: () => import('../views/Reward.vue')
   },
   {
     path: '/login',
     name: 'Login',
     component: () => import('../views/auth/Login.vue')
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../views/Cart.vue')
   },
   {
     path: '/signUp',

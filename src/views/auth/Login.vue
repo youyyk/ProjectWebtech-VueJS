@@ -22,10 +22,10 @@
             <!-- Password Input -->
                 <input class="form-input" type="password" v-model="form.password" placeholder="password" id="pwd"  name="password" required>
             <!--button LogIn -->
-                <div>
-                <button type="submit"> LOG IN </button>
-                </div>
-                </div>
+            <div>
+                <button type="submit"> Log In </button>
+            </div>
+            </div>
             </div>
         </form>
         </div>
