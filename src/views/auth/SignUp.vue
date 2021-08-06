@@ -1,31 +1,33 @@
 <template>
-  <div class="signUp">
-      <div id="FormSingUp">
-            <section>
+  <div class="signup-box">
+    
+    <p>Sign up</p>
+        <section>
+            <!--username-->
+            <div class="user-box">
+                <input type="text"  v-model="form.username"  required>
+                <label>Username</label>
+            </div>
 
-                <h1>Sign Up</h1>
-                    <div class="user">
-                        <label>User</label>
-                        <input class="input is-rounded" placeholder="user" v-model="form.username" type="text">
-                    </div> 
+            <!--email-->
+            <div class="user-box">
+                <input type="email"  v-model="form.email"  required>
+                <label>Email</label>
+            </div>
 
-                <div class="email">
-                    <label>Email</label>
-                    <input class="input is-rounded" placeholder="email" v-model="form.email" type="email">
-                </div> 
+            <!--password-->
+            <div class="user-box">
+                <input type="password"  v-model="form.password"  required>
                 <label>Password</label>
-                    <div class="passWord">
-                        <input class="input is-rounded" v-model="form.password" type="password" placeholder="password input" password-reveal>
-                    </div>
+            </div>
+
+            <!--confirm password-->
+            <div class="user-box">
+                <input type="password"  v-model="form.confirmpassword"  required>
                 <label>Confirm Password</label>
-                    <div class="confirmPass">
-                        <input class="input is-rounded" v-model="form.confirmpassword" type="password" placeholder="confirm password" password-reveal>
-                    </div>
-            </section>
-            <br>
+            </div>
             <button @click="signUp"><strong>Sign Up</strong></button>
-                
-     </div>
+  </section>
   </div>
 </template>
 
@@ -54,13 +56,18 @@ export default {
         },
         async signUp(){
             // let res = await AuthService.register(this.form)
-            let res = await AuthUser.dispatch('signUp',this.form)
-            if(res.success){
-                this.$swal("sign up Success", `Welcome ${res.user.username}`, "success")
-                this.$router.push("/")
-            } 
-            else {
-                this.$swal("sign up Failed", res.message, "error")
+            if(this.form.password === this.form.confirmpassword){
+                let res = await AuthUser.dispatch('signUp',this.form)
+                if(res.success){
+                    this.$swal("sign up Success", `Welcome ${res.user.username}`, "success")
+                    this.$router.push("/")
+                } 
+                else {
+                    this.$swal("sign up Failed", res.message, "error")
+                }
+            }
+            else{
+                this.$swal('Password is not match', '', "error")
             }
         }
     }
@@ -69,66 +76,86 @@ export default {
 
 <style scoped lang="scss">
 
-#FormSingUp{
-    text-align: left;
-    width: 35%;
-    margin-left: 760px;
-    // margin-top: 10px;
+p {
+  letter-spacing: 0.05em;
+  font-size: 250%;
+  font-family: inherit;
+  width: 600;
+  color: #3e403f;
 }
 
-h1 {
-    text-align: center;
-    font-size: 40px;
-    font-weight: 400;
-    margin-bottom: 20px;
-    border-bottom: 4px solid #f75726;
-    margin-top: 40px;
+.signup-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30%;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(116, 29, 138, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(214, 104, 14, 0.6);
+  border-radius: 10px;
 }
 
-label {
-    color: dimgrey;
-    font-size: 16px;
+
+.signup-box .user-box {
+  position: relative;
 }
 
-input, .signUp{
-    padding: 10px;
-    margin: 10px;
-    margin-right: 100px;
-    flex: 1;
+.signup-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
 }
 
-button {
-    background-color: #e78930; 
-    border: none;
-    color: white;
-    padding: 15px 70px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    margin: 4px 2px;
-    margin-top: 1px;
-    margin-left: 80px;
+.signup-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.signup-box .user-box input:focus ~ label,
+.signup-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #00f1fd;
+  font-size: 12px;
+}
+
+section button{
     cursor: pointer;
-    -webkit-transition-duration: 0.4s; 
-    transition-duration: 0.4s;
-    border-radius: 8px;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #000000;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
 }
 
 button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  background: #9362d3;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: 0 0 5px #c300ff,
+              0 0 25px #f7d43c,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
 }
-
-.signUp {
-    background-image: url(	https://www.sapogo.com/Upload/Article/2021/6/bf3366dfcdca2177a5aeecde14e24350.jpg);
-    position: absolute;
-    background-position-y: 50px;
-    background-position-x: 20px;
-    background-repeat: no-repeat;
-    margin-top: 30px;
-    top: 0%;
-    object-fit: cover;
-    display: flex;
-}
-
 </style>
+

@@ -13,6 +13,17 @@
           <template #end>
               <b-navbar-item tag="div">
                   <div class="buttons">
+                      <!-- <div v-if="!isAuthen()">
+                        <a class="button is-primary">
+                        <router-link class="navbar-item"  to="/SignUp"><strong>Sign Up</strong></router-link>
+                      </a>
+                      </div>
+
+                      <div v-if="!isAuthen()">
+                        <a class="button is-light">
+                        <router-link class="navbar-item"  to="/login"><strong>Login</strong></router-link>
+                      </a>
+                      </div> -->
                       <div id="icon" v-if="isAuthen()">
                         <a>
                           <i>
@@ -36,7 +47,6 @@
                         <router-link class="navbar-item"  to="/login"><strong>Login</strong></router-link>
                       </a>
                       </div>
-
                       <div v-if="isAuthen()">
                         <a class="button is-light">
                         <router-link class="navbar-item"  to="/logout"><strong>Logout</strong></router-link>
