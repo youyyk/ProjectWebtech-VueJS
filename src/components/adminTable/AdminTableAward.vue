@@ -16,27 +16,35 @@
                     <tr v-for="(award, index) in awards" v-bind:key = "index">
                         <th>{{award.id}}</th>
                         
-                        <td v-if="index !== editIndex">{{award.name}}</td>
+                        <td v-if="award.id !== editId">{{award.name}}</td>
                         <td v-else><b-input size="is-small" placeholder="Name" v-model="form.name"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{award.point}}</td>
+                        <td v-if="award.id !== editId">{{award.point}}</td>
                         <td v-else><b-input size="is-small" placeholder="Point" v-model="form.point"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{award.stock}}</td>
+                        <td v-if="award.id !== editId">{{award.stock}}</td>
                         <td v-else><b-input size="is-small" placeholder="Stock Number" v-model="form.stock"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{award.status}}</td>
+                        <td v-if="award.id !== editId">
+                            <div v-if="award.status" class="tag is-success">ON</div>
+                            <div v-else class="tag is-danger">OFF</div>
+                        </td>
                         <td v-else>
                             <b-select placeholder="Status" v-model="form.status">
                                 <option value=true>ON</option>
                                 <option value=false>OFF</option>
                             </b-select>
                         </td>
-                        <td v-if="index !== editIndex">
-                            <b-button @click="openForm(index, award)" size="is-small" type="is-danger" outlined>Edit</b-button>
+                        <td v-if="award.id !== editId && award.id !== deleteId">
+                            <b-button @click="openForm(award)" size="is-small" type="is-primary" outlined>Edit</b-button>&nbsp;
+                            <b-button @click="openDelete(award)" size="is-small" type="is-danger" outlined>Delete</b-button>
                         </td>
-                        <td v-else id="EditButtonGroup">
+                        <td v-else-if="award.id === editId" id="EditButtonGroup">
                             <b-button @click="editAward()" size="is-small" type="is-warning">Confirm</b-button>&nbsp;
+                            <b-button @click="closeForm()" size="is-small" type="is-warning">close</b-button>
+                        </td>
+                        <td v-else id="DeleteButtonGroup">
+                            <b-button @click="deleteAward(award)" size="is-small" type="is-danger">Confirm</b-button>&nbsp;
                             <b-button @click="closeForm()" size="is-small" type="is-warning">close</b-button>
                         </td>
                     </tr>
@@ -52,7 +60,8 @@ export default {
     data(){
         return{
             awards: [],
-            editIndex: -1,
+            editId: -1,
+            deleteId: -1,
             form: {
                 name: "",
                 point: 0,
@@ -69,16 +78,20 @@ export default {
             await RewardApiStore.dispatch('fetchAwards')
             this.awards = RewardApiStore.getters.awards
         },
-        openForm(index, award){
-            this.editIndex = index
+        openForm(award){
+            this.editId = award.id
             let cloned = JSON.parse(JSON.stringify(award))
             this.form.name = cloned.name
             this.form.point = cloned.point
             this.form.stock = cloned.stock
             this.form.status = cloned.status
         },
+        openDelete(award){
+            this.deleteId = award.id
+        },
         closeForm(){
-            this.editIndex = -1
+            this.editId = -1
+            this.deleteId = -1
             this.form= {
                 id: "",
                 name: "",
@@ -89,7 +102,7 @@ export default {
         },
         async editAward(){
             let payload={
-                index: this.editIndex,
+                id: this.editId,
                 name: this.form.name.trim(),
                 point: parseInt(this.form.point),
                 stock: parseInt(this.form.stock),
@@ -97,6 +110,19 @@ export default {
             }
             await RewardApiStore.dispatch("editAward",payload)
             this.closeForm()
+            this.fetchAwards()
+        },
+        async deleteAward(award){
+            let payload={
+                id: award.id
+            }
+            let res = await RewardApiStore.dispatch("deleteAward",payload)
+            if(res.success){
+                console.log("Delete Success");
+                this.$swal("Delete Award Success", award.name, "success")
+            }else{
+                this.$swal("Delete Award Failed", award.name, "error")
+            }
             this.fetchAwards()
         }
     }

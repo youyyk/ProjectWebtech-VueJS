@@ -16,27 +16,35 @@
                     <tr v-for="(item, index) in items" v-bind:key = "index">
                         <th>{{item.id}}</th>
 
-                        <td v-if="index !== editIndex">{{item.name}}</td>
+                        <td v-if="item.id !== editId">{{item.name}}</td>
                         <td v-else><b-input size="is-small" placeholder="Name" v-model="form.name"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{item.price}}</td>
+                        <td v-if="item.id !== editId">{{item.price}}</td>
                         <td v-else><b-input size="is-small" placeholder="Name" v-model="form.price"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{item.explain}}</td>
+                        <td v-if="item.id!== editId">{{item.explain}}</td>
                         <td v-else><b-input size="is-small" placeholder="Name" v-model="form.explain"></b-input></td>
 
-                        <td v-if="index !== editIndex">{{item.status}}</td>
+                        <td v-if="item.id !== editId">
+                            <div v-if="item.status" class="tag is-success">ON</div>
+                            <div v-else class="tag is-danger">OFF</div>
+                        </td>
                         <td v-else>
                             <b-select placeholder="Status" v-model="form.status">
                                 <option value=true>ON</option>
                                 <option value=false>OFF</option>
                             </b-select>
                         </td>
-                        <td v-if="index !== editIndex">
-                            <b-button @click="openForm(index, item)" size="is-small" type="is-danger" outlined>Edit</b-button>
+                        <td v-if="item.id !== editId && item.id !== deleteId">
+                            <b-button @click="openForm(item)" size="is-small" type="is-primary" outlined>Edit</b-button>&nbsp;
+                            <b-button @click="openDelete(item)" size="is-small" type="is-danger" outlined>Delete</b-button>
                         </td>
-                        <td v-else id="EditButtonGroup">
+                        <td v-else-if="item.id === editId" id="EditButtonGroup">
                             <b-button @click="editItem()" size="is-small" type="is-warning">Confirm</b-button>&nbsp;
+                            <b-button @click="closeForm()" size="is-small" type="is-warning">close</b-button>
+                        </td>
+                        <td v-else id="DeleteButtonGroup">
+                            <b-button @click="deleteItem(item)" size="is-small" type="is-danger">Confirm</b-button>&nbsp;
                             <b-button @click="closeForm()" size="is-small" type="is-warning">close</b-button>
                         </td>
                     </tr>
@@ -52,7 +60,8 @@ export default {
     data(){
         return{
             items: [],
-            editIndex: -1,
+            editId: -1,
+            deleteId: -1,
             form: {
                 name: "",
                 price: 0,
@@ -69,16 +78,20 @@ export default {
             await ItemApiStore.dispatch('fetchItems')
             this.items = ItemApiStore.getters.items
         },
-        openForm(index, award){
-            this.editIndex = index
-            let cloned = JSON.parse(JSON.stringify(award))
+        openForm(item){
+            this.editId = item.id
+            let cloned = JSON.parse(JSON.stringify(item))
             this.form.name = cloned.name
             this.form.price = cloned.price
             this.form.explain = cloned.explain
             this.form.status = cloned.status
         },
+        openDelete(item){
+            this.deleteId = item.id
+        },
         closeForm(){
-            this.editIndex = -1
+            this.editId = -1
+            this.deleteId= -1
             this.form= {
                 name: "",
                 price: 0,
@@ -88,7 +101,7 @@ export default {
         },
         async editItem(){
             let payload={
-                index: this.editIndex,
+                id: this.editId,
                 name: this.form.name.trim(),
                 price: parseInt(this.form.price),
                 explain: this.form.explain.trim(),
@@ -96,6 +109,19 @@ export default {
             }
             await ItemApiStore.dispatch("editItem",payload)
             this.closeForm()
+            this.fetchItems()
+        },
+        async deleteItem(item){
+            let payload={
+                id: item.id
+            }
+            let res = await ItemApiStore.dispatch("deleteItem",payload)
+            if(res.success){
+                console.log("Delete Success");
+                this.$swal("Delete Item Success", item.name, "success")
+            }else{
+                this.$swal("Delete Item Failed", item.name, "error")
+            }
             this.fetchItems()
         }
     }

@@ -10,7 +10,7 @@ export default new Vuex.Store({
   },
 
   getters: {
-    signUps: (state) => state.data,
+    signUp: (state) => state.data,
   },
 
   mutations: {

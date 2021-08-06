@@ -41,7 +41,7 @@ export default new Vuex.Store({
       commit("add", res.data)
     },
     async editAward({commit}, payload){
-      let url = api_endpoint+"/awards/"+(payload.index+1)
+      let url = api_endpoint+"/awards/"+(payload.id)
       let body = {
         name: payload.name,
         point: payload.point,
@@ -52,6 +52,20 @@ export default new Vuex.Store({
       console.log("Edit award");
       console.log(res.data)
     },
+    async deleteAward({commit},payload){
+      let url = api_endpoint+"/awards/"+(payload.id)
+      let res = await Axios.delete(url)
+      console.log("Delete award");
+      console.log(res.data)
+      if(res.status == 200){
+        return {
+          success: true
+        }
+      }
+      return {
+        success: false
+      }
+    }
   },
   modules: {
   }

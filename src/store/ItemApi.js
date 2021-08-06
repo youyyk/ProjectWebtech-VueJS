@@ -41,7 +41,7 @@ export default new Vuex.Store({
       commit("add", res.data)
     },
     async editItem({commit}, payload){
-      let url = api_endpoint+"/items/"+(payload.index+1)
+      let url = api_endpoint+"/items/"+(payload.id)
       console.log(url);
       let body = {
         name: payload.name,
@@ -54,6 +54,20 @@ export default new Vuex.Store({
       console.log("Edit item");
       console.log(res.data)
     },
+    async deleteItem({commit},payload){
+      let url = api_endpoint+"/items/"+(payload.id)
+      let res = await Axios.delete(url)
+      console.log("Delete item");
+      console.log(res.data)
+      if(res.status == 200){
+        return {
+          success: true
+        }
+      }
+      return {
+        success: false
+      }
+    }
   },
   modules: {
   }
