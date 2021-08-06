@@ -8,20 +8,18 @@
     <div class="card-content">
       <div class="media">
         <div class="media-left">
-          <!-- <figure class="image is-48x48">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-          </figure> -->
         </div>
         <div class="media-content">
           <p class="title is-4">{{itemInput.name}}</p>
         </div>
       </div>
       <div class="content">
-        {{itemInput.explain}}
-        <div>{{itemInput.price}}</div>
+        <div>{{itemInput.explain}}</div>
+        <br>
+        <div>{{itemInput.price}} Bath</div>
+        <br>
         <div>
-            <b-input value="Number"></b-input><br>
-            <b-button type="is-success">Add</b-button>
+            <b-button type="is-success">Add to Cart</b-button>
         </div>
       </div>
     </div>

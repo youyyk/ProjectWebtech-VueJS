@@ -10,14 +10,24 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/reward',
-    name: 'Reward',
-    component: () => import('../views/Reward.vue')
+    path: '/signUp',
+    name: 'SignUp',
+    component: () => import('../views/auth/SignUp.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/auth/Login.vue')
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: () => import('../views/auth/Logout.vue')
+  },
+  {
+    path: '/reward',
+    name: 'Reward',
+    component: () => import('../views/Reward.vue')
   },
   {
     path: '/cart',
@@ -25,10 +35,21 @@ const routes = [
     component: () => import('../views/Cart.vue')
   },
   {
-    path: '/signUp',
-    name: 'SignUp',
-    component: () => import('../views/SignUp.vue')
+    path: '/admin/board',
+    name: 'AdminBoard',
+    component: () => import('../views/admin/AdminBoard.vue')
+  },
+  {
+    path: '/admin/items',
+    name: 'AdminEditItems',
+    component: () => import('../views/admin/AdminItems.vue')
+  },
+  {
+    path: '/admin/Awards',
+    name: 'AdminEditAwards',
+    component: () => import('../views/admin/AdminAwards.vue')
   }
+
 ]
 
 const router = new VueRouter({

@@ -2,49 +2,34 @@
   <div class="home">
     <ads-slide></ads-slide>
     <div v-for="(item, index) in itemsDummy" :key="index">
-      <item-card :itemInput="item"></item-card>
+      <item-card v-if="item.status" :itemInput="item"></item-card>
     </div>
   </div>
   
 </template>
 
 <script>
+import ItemApiStore from '@/store/ItemApi'
 import AdsSlide from '../components/AdsSlide.vue'
 import ItemCard from '../components/ItemCard.vue'
 export default {
   components: { 
-    ItemCard, AdsSlide
+    ItemCard,
+    AdsSlide
   },
   data() {
       return {
-          itemsDummy:[
-            {
-              name: "A",
-              price: 100,
-              explain: "explain01"
-            },
-            {
-              name: "B",
-              price: 200,
-              explain: "explain02"
-            },
-            {
-              name: "C",
-              price: 500,
-              explain: "explain03"
-            },
-            {
-              name: "D",
-              price: 50,
-              explain: "explain04"
-            },
-            {
-              name: "E",
-              price: 250,
-              explain: "explain05"
-            },
-          ]
+          itemsDummy: []
       }
+  },
+  created(){
+    this.fetchItems()
+  },
+  methods:{
+    async fetchItems(){
+      await ItemApiStore.dispatch('fetchItems')
+      this.itemsDummy = ItemApiStore.getters.items
+    }
   }
 }
 </script>

@@ -1,80 +1,81 @@
 <template>
-  <!-- <div class="login">
-      <div id="FormLogin">
-            <section>
-                <body>
-                    <b-field label="Email">
-                    <b-input></b-input>
-                </b-field>
-
-                <b-field label="Password">
-                    <b-input></b-input>
-                </b-field>
-                </body>
-            </section>
-     </div>
-  </div> -->
     <div class="overlay">
-        <body>
-        <form>
+        <div class="background">
+        <form @submit.prevent="login">
             <div class="con">
                 <header class="head-form">
                     <h2>Log In</h2>
-                        <p>login here using your email and password</p>
+                        <p>login here using your user and password</p>
                 </header>
                 <br>
+
                 <div class="field-set">
                     <span class="input-item">
                         <i class="fa fa-user-circle"></i>
                     </span>
-                <input class="form-input" id="txt-input" type="email" placeholder="email" required>    
+                <input class="form-input" id="txt-input" v-model="form.user" type="text" placeholder="user" required>    
                 <br>
            <!-- Password -->
                 <span class="input-item">
                     <i class="fa fa-key"></i>
                 </span>
             <!-- Password Input -->
-                <input class="form-input" type="password" placeholder="password" id="pwd"  name="password" required>
+                <input class="form-input" type="password" v-model="form.password" placeholder="password" id="pwd"  name="password" required>
             <!--button LogIn -->
-                <button class="log-in"> Log In </button>
+            <div>
+                <button type="submit"> Log In </button>
+            </div>
             </div>
             </div>
         </form>
-        </body>
+        </div>
     </div>
 </template>
 
 <script>
+// import AuthService from '@/services/AuthService'
+import AuthUser from '@/store/AuthUser'
 export default {
     data() {
         return {
-            
+            form: {
+                user: '',
+                password: ''
+            }
+        }
+    },
+    methods: {
+        async login(){
+            // let res = await AuthUser.login(this.form)
+            let res = await AuthUser.dispatch('login',this.form)
+            console.log(res);
+            if (res.success){
+                this.$swal("Login Success", `Welcome, ${res.user.username}`, "success")
+                this.$router.push('/') //กด login แล้วไปหน้า home
+            }
+            else{
+                this.$swal("Login Failed", res.message, "error");
+                //alert(res.message)
+            }
         }
     }
 }
 </script>
 
 <style scoped lang="scss">
-#FormLogin{
-    text-align: left;
-    width: 30%;
-}
 
-body {
+.background {
     background-image: linear-gradient(-225deg, #e4c5eb 0%, #FFE6FA 100%);
     background-image: linear-gradient(to top, #e1c0e7 0%, #fad9ba 100%);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    font-family: inherit;
-    // opacity: .95;
 }
 
+
 form {
-    width: 450px;
-    min-height: 500px;
+    width: 50%;
+    min-height: 50px;
     height: auto;
     border-radius: 5px;
-    margin: 1% auto;
+    margin: 5% auto;
     box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
     padding: 2%;
     background-image: linear-gradient(-225deg, #e1c1f0 50%, #f8debb 50%);
@@ -108,7 +109,7 @@ input[class="form-input"]
     width: 250px;
     height: 50px;
   
-    margin-top: 2%;
+    margin-top: 1%;
     padding: 15px;
     
     font-size: 16px;
@@ -160,8 +161,13 @@ button {
 }
 
 button:hover {
-    transform: translatey(3px);
-    box-shadow: none;
+    background: #9362d3;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0 0 5px #c300ff,
+                0 0 25px #f7d43c,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
 }
 
 button:hover {
