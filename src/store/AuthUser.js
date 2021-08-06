@@ -4,7 +4,7 @@ import AuthService from '@/services/AuthService'
 
 Vue.use(Vuex)
 
-let auth_key = "auth-shope"
+let auth_key = "auth-home"
 let auth = JSON.parse(localStorage.getItem(auth_key))
 
 const initialState = {

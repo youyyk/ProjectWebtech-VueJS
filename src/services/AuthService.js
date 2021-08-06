@@ -1,6 +1,6 @@
 import Axios from "axios"
 
-const auth_key = "auth-shop"
+const auth_key = "auth-home"
 let auth = JSON.parse(localStorage.getItem(auth_key)) //เก็บข้อมูล user
 const user = auth ? auth.user : ""
 const jwt = auth ? auth.jwt : ""
@@ -70,11 +70,6 @@ export default {
             }
         }
     },
-    
-    logout() {
-        localStorage.removeItem(auth_key)
-    },
-
     async signUp({ username, email, password }){
         try {
             let url = `${api_endpoint}/auth/local/register`
@@ -106,5 +101,9 @@ export default {
             }
         }
     },
+
+    logout() {
+        localStorage.removeItem(auth_key)
+    }
 
 }

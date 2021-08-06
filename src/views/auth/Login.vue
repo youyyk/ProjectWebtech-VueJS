@@ -51,7 +51,6 @@ export default {
             console.log(res);
             if (res.success){
                 this.$swal("Login Success", `Welcome, ${res.user.username}`, "success")
-                // alert("Welcome")
                 this.$router.push('/') //กด login แล้วไปหน้า home
             }
             else{
