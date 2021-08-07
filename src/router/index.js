@@ -50,6 +50,7 @@ const routes = [
     component: () => import('../views/admin/AdminAwards.vue')
   }
 
+
 ]
 
 const router = new VueRouter({

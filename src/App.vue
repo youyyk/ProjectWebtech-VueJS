@@ -5,9 +5,10 @@
           <template #start>
               <router-link class="navbar-item" to="/">Home</router-link>
               <router-link class="navbar-item" to="/reward">Reward</router-link>
-              <router-link v-if="isAuthen()" class="navbar-item" to="/admin/board">Admin-Board</router-link>
-              <router-link v-if="isAuthen()" class="navbar-item" to="/admin/items">Admin-Edit-Items</router-link>
-              <router-link v-if="isAuthen()" class="navbar-item" to="/admin/awards">Admin-Edit-Awards</router-link>
+              <router-link v-if="isAuthen() && isAdmin()" class="navbar-item" to="/admin/board">Admin-Board</router-link>
+              <router-link v-if="isAuthen() && isAdmin()" class="navbar-item" to="/admin/items">Admin-Edit-Items</router-link>
+              <router-link v-if="isAuthen() && isAdmin()" class="navbar-item" to="/admin/awards">Admin-Edit-Awards</router-link>
+            
           </template>
           <template #end>
               <b-navbar-item tag="div">
@@ -54,14 +55,24 @@ import AuthUser from '@/store/AuthUser'
 export default {
   data() {
       return {
+        currentUser: ''
       }
   },
   created(){
+    this.fetchCurrentUser()
+      console.log(this.currentUser);
+      console.log(this.isAdmin());
   },
   methods:{
     isAuthen(){
       return AuthUser.getters.isAuthen
     },
+    fetchCurrentUser(){
+      this.currentUser = AuthUser.getters.user
+    },
+    isAdmin(){
+      return this.currentUser.admin
+    }
   }
 }
 </script>

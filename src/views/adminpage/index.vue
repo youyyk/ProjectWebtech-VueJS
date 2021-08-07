@@ -1,14 +1,13 @@
 <template>
     <div>
-        <!-- <router-link to="/home" v-if="isAuthen()">Add new Pokemon</router-link> -->
         <home></home>
     </div>
 </template>
 
 <script>
-import Home from '@/views/Home'
-// import AuthService from '@/services/AuthService'
 import AuthUser from '@/store/AuthUser'
+
+import Home from '../Home.vue'
 
 export default {
     components: {

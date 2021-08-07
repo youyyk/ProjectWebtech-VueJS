@@ -57,7 +57,7 @@ export default {
                 this.$swal("Login Failed", res.message, "error");
                 //alert(res.message)
             }
-        }
+        },
     }
 }
 </script>
