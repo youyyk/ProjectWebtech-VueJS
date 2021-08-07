@@ -24,11 +24,12 @@ export default {
         }
         return {}  
     },
-
     getUser(){
         return user
     },
-
+    getItem(){
+        return user.items
+    },
     getJwt(){
         return jwt
     },
@@ -101,6 +102,25 @@ export default {
                 }
             } else {
                 return
+            }
+        }
+    },
+    async updateItem(payload){
+        try{
+            let url = `${api_endpoint}/users/${payload.id}`
+            let body={
+                items: payload.items,
+                point_now: payload.point_now
+            }
+            let res = await Axios.put(url, body, this.getApiHeader())
+            if(res.status === 200){
+                return {
+                    success: true
+                }
+            }
+        }catch (e) {
+            return {
+                success: false
             }
         }
     },

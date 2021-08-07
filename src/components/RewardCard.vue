@@ -15,13 +15,14 @@
         Stock: {{ rewardInput.stock }} | Point: {{ rewardInput.point }}
         <br>
         <br>
-        <b-button type="is-success">Get Reward</b-button>
+        <b-button v-if="isAuthen()" type="is-success">Get Reward</b-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import AuthUser from "@/store/AuthUser"
 export default {
   props:{
     rewardInput: Object
@@ -32,7 +33,9 @@ export default {
       }
   },
   methods:{
-
+    isAuthen(){
+      return AuthUser.getters.isAuthen
+    },
   }
 }
 </script>
