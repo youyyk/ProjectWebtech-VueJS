@@ -26,6 +26,9 @@ export default new Vuex.Store({
         state.user = ""
         state.jwt = ""
         state.isAuthen = false
+      },
+      update(state, data){
+        state.user.items = data
       }
   },
   actions: {
@@ -47,6 +50,13 @@ export default new Vuex.Store({
           }
           return res
       },
+      async updateItem({commit}, payload){
+        let res = await AuthService.updateItem(payload)
+        if(res.success){
+          commit("update", payload)
+        }
+        return res
+      }
   },
   getters:{
     user:(state) => state.user,

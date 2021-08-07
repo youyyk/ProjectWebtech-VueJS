@@ -2,24 +2,22 @@
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+        <img :src="getImage(itemInput.picture[0].url)" alt="Placeholder image">
       </figure>
     </div>
     <div class="card-content">
       <div class="media">
-        <div class="media-left">
-        </div>
         <div class="media-content">
-          <p class="title is-4">{{itemInput.name}}</p>
+          <p class="title">{{itemInput.name}}</p>
         </div>
       </div>
       <div class="content">
-        <div>{{itemInput.explain}}</div>
+        <div class="text">{{itemInput.explain}}</div>
         <br>
-        <div>{{itemInput.price}} Bath</div>
+        <div class="text">{{itemInput.price}} Bath</div>
         <br>
         <div>
-            <b-button type="is-success">Add to Cart</b-button>
+            <b-button v-if="isAuthen()" @click="AddItemtoCart()" type="is-success">Add to Cart</b-button>
         </div>
       </div>
     </div>
@@ -27,6 +25,8 @@
 </template>
 
 <script>
+import AuthUser from "@/store/AuthUser"
+import UserService from '@/services/UserService'
 export default {
   props:{
     itemInput: Object,
@@ -37,7 +37,31 @@ export default {
       }
   },
   methods:{
-
+    isAuthen(){
+      return AuthUser.getters.isAuthen
+    },
+    async AddItemtoCart(){
+      let user = await UserService.getUserById(AuthUser.getters.user.id)
+      let item = user.items
+      let formItem = {
+        id: this.itemInput.id,
+        name: this.itemInput.name,
+        price: this.itemInput.price,
+        explain: this.itemInput.explain,
+        status: this.itemInput.status,
+        updated_at: this.itemInput.updated_at,
+        created_at: this.itemInput.created_at
+      }
+      item.push(formItem)
+      let payload = {
+        id: user.id,
+        items: item
+      }
+      await AuthUser.dispatch("updateItem", payload)
+    },
+    getImage(url){
+      return 'http://localhost:1337' + url
+    }
   }
 }
 </script>
@@ -50,5 +74,8 @@ export default {
   position: relative;
   float: left;
   margin-left: 47px;
+}
+.media{
+  padding-left: -10px;
 }
 </style>
