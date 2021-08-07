@@ -60,6 +60,7 @@ const routes = [
     component: () => import('../views/History_Items.vue')
   },
 
+
 ]
 
 const router = new VueRouter({

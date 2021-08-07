@@ -12,15 +12,24 @@
 <script>
 import AdminTableAward from '../../components/adminTable/AdminTableAward.vue'
 import PopUpCreateAward from '../../components/adminTable/PopUpCreateAward.vue'
+import AuthUser from '@/store/AuthUser'
 export default {
   components: { AdminTableAward, PopUpCreateAward },
     data(){
         return{
         }
     },
-    created(){
-    },
+
     methods: {
+        isAuthen() {
+            return AuthUser.getters.isAuthen
+        }
+    },
+    mounted(){
+        if(!this.isAuthen()){
+            this.$swal("Restricted Area","You have no permission","warning")
+            this.$router.push("/")
+        }
     }
 }
 </script>
