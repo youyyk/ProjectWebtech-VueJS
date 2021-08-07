@@ -4,7 +4,7 @@
             <table class="table is-hoverable is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
                     <tr>
-                        <th>#id</th>
+                        <th>#</th>
                         <th>Name Item</th>
                         <th>Price</th>
                         <th>Explain</th>

@@ -7,20 +7,14 @@
     </div>
     <div class="card-content">
       <div class="media">
-        <div class="media-left">
-        </div>
         <div class="media-content">
-          <p class="title is-4">{{itemInput.name}}</p>
+          <p class="title is-4">{{ rewardInput.reward.name }}</p>
         </div>
       </div>
       <div class="content">
-        <div>{{itemInput.explain}}</div>
-        <br>
-        <div>{{itemInput.price}} Bath</div>
-        <br>
-        <div>
-            <b-button type="is-success">Add to Cart</b-button>
-        </div>
+        <div>Receive Date</div>
+        <div class="tag is-info">{{rewardInput.date}}</div>
+
       </div>
     </div>
   </div>
@@ -29,7 +23,7 @@
 <script>
 export default {
   props:{
-    itemInput: Object,
+    rewardInput: Object
   },
   data() {
       return {
@@ -46,7 +40,7 @@ export default {
 .card{
   margin: 20px;
   width: 400px;
-  height: 540px;
+  height: 450px;
   position: relative;
   float: left;
   margin-left: 47px;

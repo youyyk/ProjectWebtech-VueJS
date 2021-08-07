@@ -48,7 +48,17 @@ const routes = [
     path: '/admin/Awards',
     name: 'AdminEditAwards',
     component: () => import('../views/admin/AdminAwards.vue')
-  }
+  },
+  {
+    path: '/history/rewards',
+    name: 'HistoryRewards',
+    component: () => import('../views/History_Rewards.vue')
+  },
+  {
+    path: '/history/items',
+    name: 'HistoryItems',
+    component: () => import('../views/History_Items.vue')
+  },
 
 ]
 
