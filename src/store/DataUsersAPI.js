@@ -37,6 +37,10 @@ export default new Vuex.Store({
       res.data = res.data[0]
       commit('fetch', {res})
       console.log("Fetch Data-User By username API");
+    },
+    async createDateUser({commit}, payload){
+      let res = await Axios.post(api_endpoint+"/data-users",payload)
+      
     }
 
   },

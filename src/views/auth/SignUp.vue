@@ -33,6 +33,7 @@
 
 <script>
 import AuthUser from '@/store/AuthUser'
+import DataUsersAPI from '@/store/DataUsersAPI'
 export default {
     data() {
         return {
@@ -58,6 +59,12 @@ export default {
             if(this.form.password === this.form.confirmpassword){
                 let res = await AuthUser.dispatch('signUp',this.form)
                 if(res.success){
+                    let paylaod = {
+                      name: res.user.username,
+                      Total_Buy: 0,
+                      point_used: 0,
+                    }
+                    await DataUsersAPI.dispatch("createDateUser",paylaod)
                     this.$swal("Sign up Success", `Welcome ${res.user.username}`, "success")
                     this.$router.push("/")
                 } 
