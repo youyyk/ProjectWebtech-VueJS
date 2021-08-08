@@ -65,25 +65,25 @@ import AuthUser from '@/store/AuthUser'
 export default {
   data() {
       return {
-        currentUser: ''
+        currentUser: '',
+        admin: false,
       }
   },
   created(){
     this.fetchCurrentUser()
-      console.log(this.currentUser);
-      console.log(this.isAdmin());
   },
   methods:{
+    fetchCurrentUser(){
+      this.currentUser = AuthUser.getters.user
+      this.admin = AuthUser.getters.isAdmin
+    },
     isAuthen(){
       return AuthUser.getters.isAuthen
     },
-    fetchCurrentUser(){
-      this.currentUser = AuthUser.getters.user
-    },
     isAdmin(){
-      return this.currentUser.admin
-    }
-  }
+      return AuthUser.getters.isAdmin
+    },
+  },
 }
 </script>
 

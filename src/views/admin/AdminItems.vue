@@ -24,9 +24,9 @@ export default {
     },
 
     methods: {
-         isAuthen() {
+        isAuthen() {
             return AuthUser.getters.isAuthen
-        }
+        },
     },
     mounted(){
         if(!this.isAuthen()){
