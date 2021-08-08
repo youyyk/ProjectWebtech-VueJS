@@ -1,10 +1,5 @@
 <template>
   <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-      </figure>
-    </div>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
@@ -15,7 +10,7 @@
         Stock: {{ rewardInput.stock }} | Point: {{ rewardInput.point }}
         <br>
         <br>
-        <b-button v-if="isAuthen()" type="is-success">Get Reward</b-button>
+        <b-button @click="getReward()" v-if="isAuthen()" type="is-success">Get Reward</b-button>
       </div>
     </div>
   </div>
@@ -23,19 +18,55 @@
 
 <script>
 import AuthUser from "@/store/AuthUser"
+import HistoryRewardApi from '@/store/HistoryRewardApi'
+import AwardApi from '@/store/AwardApi'
 export default {
   props:{
     rewardInput: Object
   },
   data() {
       return {
- 
+        user: ''
       }
   },
   methods:{
     isAuthen(){
       return AuthUser.getters.isAuthen
     },
+    async getReward(){
+      this.user = AuthUser.getters.user
+      if(this.user.point_now >= this.rewardInput.point){
+        var today = new Date();
+        var dateLocal = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+        let historyRewardPayload= {
+          name_user: this.user.username,
+          name_award: this.rewardInput.name,
+          date: dateLocal
+        }
+
+        this.user.point_now -= this.rewardInput.point
+        let payload = {
+          id: this.user.id,
+          point_now: this.user.point_now
+        }
+        
+        let rewardPayload= {
+          id: this.rewardInput.id,
+          name: this.rewardInput.name,
+          point: this.rewardInput.point,
+          stock: this.rewardInput.stock-1,
+          status: this.rewardInput.status
+        }
+
+        await AuthUser.dispatch("updatePoint", payload)
+        await HistoryRewardApi.dispatch("updateNewHistory", historyRewardPayload)
+        await AwardApi.dispatch("editAward", rewardPayload)
+      }
+      else{
+        this.$swal('Not enough point', '', 'error')
+      }
+    }
   }
 }
 </script>
@@ -44,7 +75,7 @@ export default {
 .card{
   margin: 20px;
   width: 400px;
-  height: 500px;
+  height: 190px;
   position: relative;
   float: left;
   margin-left: 47px;

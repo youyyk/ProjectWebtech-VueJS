@@ -64,7 +64,7 @@ export default {
                       Total_Buy: 0,
                       point_used: 0,
                     }
-                    await DataUsersAPI.dispatch("createDateUser",paylaod)
+                    // await DataUsersAPI.dispatch("createDateUser",paylaod)
                     this.$swal("Sign up Success", `Welcome ${res.user.username}`, "success")
                     this.$router.push("/")
                 } 

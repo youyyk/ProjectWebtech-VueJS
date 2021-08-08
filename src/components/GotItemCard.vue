@@ -1,14 +1,9 @@
 <template>
   <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-      </figure>
-    </div>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{ itemInput.item.name }}</p>
+          <p class="title is-4">{{ itemInput.name_item }}</p>
         </div>
       </div>
       <div class="content">
@@ -34,7 +29,7 @@ export default {
       }
   },
   methods:{
-
+    
   }
 }
 </script>
@@ -43,7 +38,7 @@ export default {
 .card{
   margin: 20px;
   width: 400px;
-  height: 470px;
+  height: 190px;
   position: relative;
   float: left;
   margin-left: 47px;

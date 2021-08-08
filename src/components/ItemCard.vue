@@ -58,6 +58,8 @@ export default {
         items: item
       }
       await AuthUser.dispatch("updateItem", payload)
+
+      this.$swal("Added Item to your cart", "", "success")
     },
     getImage(url){
       return 'http://localhost:1337' + url

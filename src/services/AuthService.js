@@ -121,7 +121,24 @@ export default {
             }
         }
     },
-
+    async updatePoint(payload){
+        try{
+            let url = `${api_endpoint}/users/${payload.id}`
+            let body={
+                point_now: payload.point_now
+            }
+            let res = await Axios.put(url, body, this.getApiHeader())
+            if(res.status === 200){
+                return {
+                    success: true
+                }
+            }
+        }catch (e) {
+            return {
+                success: false
+            }
+        }
+    },
     logout() {
         localStorage.removeItem(auth_key)
     }

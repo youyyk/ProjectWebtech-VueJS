@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Axios from 'axios'
 
 let api_endpoint = process.env.VUE_APP_POKEDEX_ENDPOINT || "http://localhost:1337"
 
@@ -11,7 +12,7 @@ export default new Vuex.Store({
   },
 
   getters: {
-    signUp: (state) => state.data,
+    history_buys: (state) => state.data,
   },
 
   mutations: {
@@ -23,9 +24,13 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async fetchPokemon ({ commit }){
-        let res = await axios.get(api_endpoint + '/users')
+    async fetchHistory({ commit }){
+        let res = await Axios.get(api_endpoint + '/history-buys')
         commit('fetch',{res})
+    },
+    async updateNewHistory({commit}, payload){
+        let res = await Axios.post(api_endpoint + '/history-buys', payload)
+        commit('add', {res})
     }
   },
   modules: {
