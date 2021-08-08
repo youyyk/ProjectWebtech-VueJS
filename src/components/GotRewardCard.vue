@@ -8,21 +8,19 @@
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{ rewardInput.name }}</p>
+          <p class="title is-4">{{ rewardInput.reward.name }}</p>
         </div>
       </div>
       <div class="content">
-        Stock: {{ rewardInput.stock }} | Point: {{ rewardInput.point }}
-        <br>
-        <br>
-        <b-button v-if="isAuthen()" type="is-success">Get Reward</b-button>
+        <div>Receive Date</div>
+        <div class="tag is-info">{{rewardInput.date}}</div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AuthUser from "@/store/AuthUser"
 export default {
   props:{
     rewardInput: Object
@@ -33,9 +31,7 @@ export default {
       }
   },
   methods:{
-    isAuthen(){
-      return AuthUser.getters.isAuthen
-    },
+
   }
 }
 </script>
@@ -44,7 +40,7 @@ export default {
 .card{
   margin: 20px;
   width: 400px;
-  height: 500px;
+  height: 450px;
   position: relative;
   float: left;
   margin-left: 47px;

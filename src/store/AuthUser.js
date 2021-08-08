@@ -21,18 +21,23 @@ export default new Vuex.Store({
         state.user = user
         state.jwt = jwt
         state.isAuthen = true
+        state.isAdmin = state.user.role.type === "admin"
       },
       logoutSuccess(state){
         state.user = ""
         state.jwt = ""
         state.isAuthen = false
+        state.isAdmin = false
+      },
+      update(state, data){
+        state.user.items = data
       }
   },
   actions: {
       async login({commit}, { user, password }){
           let res = await AuthService.login({user,password})
           if(res.success){
-              commit('loginSuccess', res.user, res.jwt, res.type) // type true=admin false=user
+              commit('loginSuccess', res.user, res.jwt) // type true=admin false=user
           }
           return res
       },
@@ -43,15 +48,23 @@ export default new Vuex.Store({
       async signUp({commit}, {username, email, password}){
           let res = await AuthService.signUp({ username, email, password})
           if(res.success){
-              commit("loginSuccess", res.user, res.jwt)
+              commit("loginSuccess", res.user, res.jwt, res.type)
           }
           return res
       },
+      async updateItem({commit}, payload){
+        let res = await AuthService.updateItem(payload)
+        if(res.success){
+          commit("update", payload)
+        }
+        return res
+      }
   },
   getters:{
     user:(state) => state.user,
     jwt: (state) => state.jwt,
     isAuthen: (state) => state.isAuthen,
+    isAdmin: (state) => state.isAdmin,
   },
   modules: {
 

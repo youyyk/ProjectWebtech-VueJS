@@ -8,14 +8,26 @@
 </template>
 
 <script>
+import AuthUser from '@/store/AuthUser'
 import AdminTableUsers from '../../components/adminTable/AdminTableUsers.vue'
 export default {
     components: { 
         AdminTableUsers 
     },
+
     created(){
     },
+    
     methods: {
+        isAuthen() {
+            return AuthUser.getters.isAuthen
+        }
+    },
+    mounted(){
+        if(!this.isAuthen()){
+            this.$swal("Restricted Area","You have no permission","warning")
+            this.$router.push("/")
+        }
     }
 }
 </script>

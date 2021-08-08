@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import AuthUser from '@/store/AuthUser'
 import AdminTableItem from '../../components/adminTable/AdminTableItem.vue'
 import PopUpCreateItem from '../../components/adminTable/PopUpCreateItem.vue'
 export default {
@@ -21,7 +22,17 @@ export default {
     },
     created(){
     },
+
     methods: {
+        isAuthen() {
+            return AuthUser.getters.isAuthen
+        },
+    },
+    mounted(){
+        if(!this.isAuthen()){
+            this.$swal("Restricted Area","You have no permission","warning")
+            this.$router.push("/")
+        }
     }
 }
 </script>

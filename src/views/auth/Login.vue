@@ -46,18 +46,15 @@ export default {
     },
     methods: {
         async login(){
-            // let res = await AuthUser.login(this.form)
             let res = await AuthUser.dispatch('login',this.form)
-            console.log(res);
             if (res.success){
                 this.$swal("Login Success", `Welcome, ${res.user.username}`, "success")
                 this.$router.push('/') //กด login แล้วไปหน้า home
             }
             else{
                 this.$swal("Login Failed", res.message, "error");
-                //alert(res.message)
             }
-        }
+        },
     }
 }
 </script>

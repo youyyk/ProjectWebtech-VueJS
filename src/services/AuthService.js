@@ -11,9 +11,6 @@ export default {
     isAuthen(){
         return (user !== "") && (jwt !== "")
     },
-    isAdmin(){
-        return this.isAuthen() && (user.role.type === "admin")
-    },
     getApiHeader(){
         if(jwt !== ""){
             return{
@@ -24,11 +21,12 @@ export default {
         }
         return {}  
     },
-
     getUser(){
         return user
     },
-
+    getItem(){
+        return user.items
+    },
     getJwt(){
         return jwt
     },
@@ -47,7 +45,7 @@ export default {
                     success: true,
                     user: res.data.user,
                     jwt: res.data.jwt,
-                    type: this.isAdmin(),
+                    type: res.data.user.role.type === "admin",
                 }
             }else{
                 console.log("NOT 200", res);
@@ -101,6 +99,25 @@ export default {
                 }
             } else {
                 return
+            }
+        }
+    },
+    async updateItem(payload){
+        try{
+            let url = `${api_endpoint}/users/${payload.id}`
+            let body={
+                items: payload.items,
+                point_now: payload.point_now
+            }
+            let res = await Axios.put(url, body, this.getApiHeader())
+            if(res.status === 200){
+                return {
+                    success: true
+                }
+            }
+        }catch (e) {
+            return {
+                success: false
             }
         }
     },
