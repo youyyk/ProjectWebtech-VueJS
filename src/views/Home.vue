@@ -52,7 +52,9 @@ export default {
           point_now: user.point_now + 1,
           date: currentDate
         }
+        console.log(payload);
         await AuthUser.dispatch('updateDate', payload)
+        await AuthUser.dispatch('updatePoint', payload)
         this.$swal("Check In Received 1 Point", `Now point ${user.point_now+1}`, "success")
       }
     }

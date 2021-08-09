@@ -1,36 +1,77 @@
 <template>
-    <b-carousel id="AdsSlide">
-        <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
-            <section :class="`hero is-medium is-${carousel.color}`">
-                <div class="hero-body has-text-centered">
-                    <h1 class="title">{{carousel.text}}</h1>
-                </div>
-            </section>
+    <b-carousel
+        :autoplay="false"
+        with-carousel-list
+        :indicator="false"
+        :overlay="gallery"
+        @click="switchGallery(true)">
+        <b-carousel-item v-for="(item, i) in items" :key="i">
+            <figure class="image">
+                <img :src="item.image">
+            </figure>
         </b-carousel-item>
+        <span v-if="gallery" @click="switchGallery(false)" class="modal-close is-large"/>
+        
+        
     </b-carousel>
 </template>
 
 <script>
 export default {
-    props:{
-
-    },
-    data(){
+    data() {
         return {
-            carousels: [
-                { text: 'Slide 1', color: 'primary' },
-                { text: 'Slide 2', color: 'info' },
-                { text: 'Slide 3', color: 'success' },
-                { text: 'Slide 4', color: 'warning' },
-                { text: 'Slide 5', color: 'danger' }
+            gallery: false,
+            al: {
+                hasGrayscale: true,
+                itemsToShow: 2,
+                breakpoints: {
+                    768: {
+                        hasGrayscale: false,
+                        itemsToShow: 4
+                    },
+                    960: {
+                        hasGrayscale: true,
+                        itemsToShow: 6
+                    }
+                }
+            },
+            items: [
+                {
+                    title: 'Slide 1',
+                    image: 'https://picsum.photos/id/0/1230/350'
+                },
+                {
+                    title: 'Slide 2',
+                    image: 'https://picsum.photos/id/1/1230/350'
+                },
+                {
+                    title: 'Slide 3',
+                    image: 'https://picsum.photos/id/2/1230/350'
+                },
+                {
+                    title: 'Slide 4',
+                    image: 'https://picsum.photos/id/3/1230/350'
+                },
+                {
+                    title: 'Slide 5',
+                    image: 'https://picsum.photos/id/4/1230/350'
+                },
             ]
+        }
+    },
+    methods: {
+        switchGallery(value) {
+            this.gallery = value
+            if (value) {
+                document.documentElement.classList.add('is-clipped')
+            } else {
+                document.documentElement.classList.remove('is-clipped')
+            }
         }
     }
 }
 </script>
 
-<style scoped lang="scss">
-#AdsSlide{
-    width: 100%;
-}
+<style lang="scss" scoped>
+
 </style>
