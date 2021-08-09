@@ -19,7 +19,12 @@
                             </svg>
                         </router-link>
                       </div>
-                      
+                      <div v-if="isAuthen() && checkDate()" @click="getPoint">
+                        <a class="button is-primary">
+                          <strong>Check in today get 1 point</strong>
+                        </a>
+                      </div>
+
                       <div v-if="isAuthen()">
                         <b-dropdown aria-role="list">
                             <template #trigger>
@@ -60,7 +65,7 @@
 
 <script>
 import AuthUser from '@/store/AuthUser'
-import AuthService from '@/services/AuthService'
+import UserService from '@/services/UserService'
 export default {
   data() {
       return {
@@ -83,6 +88,22 @@ export default {
     isAdmin(){
       return AuthUser.getters.isAdmin
     },
+    checkDate(){
+      var today = new Date();
+      var dateLocal = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      this.currentDate = dateLocal
+      let x = new Date(this.currentDate).getTime();
+      let y = new Date(AuthUser.getters.user.date).getTime();
+      return x > y
+    },
+    async getPoint(){
+      let user = await UserService.getUserById(AuthUser.getters.user.id)
+      let payload = {
+        id: user.id,
+        point_now: user.point_now + 1
+      }
+      await AuthUser.dispatch('updatePoint', payload)
+    }
   },
 }
 </script>
