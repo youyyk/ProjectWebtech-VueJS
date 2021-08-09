@@ -11,7 +11,7 @@ const initialState = {
     user: auth ? auth.user : "",
     jwt: auth ? auth.jwt : "",
     isAuthen :auth ? true : false,
-    isAdmin: auth.user.role.type === "admin"
+    isAdmin: auth ? auth.user.role.type === "admin" : false
 }
 
 export default new Vuex.Store({
