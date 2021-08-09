@@ -34,11 +34,11 @@ export default {
             return AuthUser.getters.isAuthen
         },
         isAdmin(){
-        return AuthUser.getters.isAdmin
+            return AuthUser.getters.isAdmin
         },
     },
     mounted(){
-        if(!(this.isAuthen() && !this.isAdmin())){
+        if( this.isAuthen() && !this.isAdmin()){
             this.$swal("Restricted Area","You have no permission","warning")
             this.$router.push("/")
         }

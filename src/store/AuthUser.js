@@ -67,6 +67,14 @@ export default new Vuex.Store({
           commit("update", payload)
         }
         return res
+      },
+      async updateDate({commit}, payload){
+        console.log("AuthUser",payload);
+        let res = await AuthService.updateDate(payload)
+        if(res.success){
+          commit("update", payload)
+        }
+        return res
       }
   },
   getters:{

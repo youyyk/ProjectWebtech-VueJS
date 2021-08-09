@@ -6,8 +6,8 @@
             </div>
         </footer>
         <div class="bg">
-        <br>
-        <pop-up-create-item></pop-up-create-item>
+        <!-- <br>
+        <pop-up-create-item></pop-up-create-item> -->
         <br>
         <admin-table-item></admin-table-item>
         </div>
@@ -37,7 +37,7 @@ export default {
         },
     },
     mounted(){
-        if(!(this.isAuthen() && !this.isAdmin())){
+        if( this.isAuthen() && !this.isAdmin()){
             this.$swal("Restricted Area","You have no permission","warning")
             this.$router.push("/")
         }

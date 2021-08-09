@@ -155,6 +155,24 @@ export default {
             }
         }
     },
+    async updateDate(payload){
+        try{
+            let url = `${api_endpoint}/users/${payload.id}`
+            let body={
+                date: payload.date
+            }
+            let res = await Axios.put(url, body, this.getApiHeader())
+            if(res.status === 200){
+                return {
+                    success: true
+                }
+            }
+        }catch (e) {
+            return {
+                success: false
+            }
+        }
+    },
     logout() {
         localStorage.removeItem(auth_key)
     }

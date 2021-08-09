@@ -90,7 +90,7 @@ export default {
   position: relative;
   float: left;
   margin-left: 47px;
-  background-color: rgb(78, 79, 82);
+  background-color: rgb(255, 228, 205);
 }
 
 .card-content{

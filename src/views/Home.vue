@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import AuthUser from '@/store/AuthUser'
+import UserService from '@/services/UserService'
 import ItemApiStore from '@/store/ItemApi'
 import AdsSlide from '../components/AdsSlide.vue'
 import ItemCard from '../components/ItemCard.vue'
@@ -31,6 +33,28 @@ export default {
     async fetchItems(){
       await ItemApiStore.dispatch('fetchItems')
       this.itemsDummy = ItemApiStore.getters.items
+    },
+    isAuthen() {
+        return AuthUser.getters.isAuthen
+    },
+  },
+  async mounted(){
+    if(this.isAuthen()){
+      console.log("Test");
+      let today= new Date()
+      let currentDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
+      let x = new Date(currentDate).getTime()
+      let user = await UserService.getUserById(AuthUser.getters.user.id)
+      let y = new Date(user.date).getTime()
+      if(x>y){
+        let payload = {
+          id: user.id,
+          point_now: user.point_now + 1,
+          date: currentDate
+        }
+        await AuthUser.dispatch('updateDate', payload)
+        this.$swal("Check In Received 1 Point", `Now point ${user.point_now+1}`, "success")
+      }
     }
   }
 }

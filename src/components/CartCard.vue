@@ -74,7 +74,7 @@ export default {
       let historyPayload= {
         name_item: this.itemInput.name,
         price_all: this.itemInput.price * this.inputNum,
-        point_receive: this.itemInput.price * 0.02,
+        point_receive: (this.itemInput.price * this.inputNum) * 0.02,
         date: dateLocal,
         amount: this.inputNum,
         name_user: user.username
