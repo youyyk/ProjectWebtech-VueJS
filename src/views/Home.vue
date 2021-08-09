@@ -37,10 +37,12 @@ export default {
     isAuthen() {
         return AuthUser.getters.isAuthen
     },
+    isAdmin(){
+      return AuthUser.getters.isAdmin
+    },
   },
   async mounted(){
-    if(this.isAuthen()){
-      console.log("Test");
+    if(this.isAuthen() && !this.isAdmin()){
       let today= new Date()
       let currentDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
       let x = new Date(currentDate).getTime()
