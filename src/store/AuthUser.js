@@ -8,10 +8,10 @@ let auth_key = "auth-home"
 let auth = JSON.parse(localStorage.getItem(auth_key))
 
 const initialState = {
-    user: auth ? auth.user : "",
-    jwt: auth ? auth.jwt : "",
-    isAuthen :auth ? true : false,
-    isAdmin: false
+  user: auth ? auth.user : "",
+  jwt: auth ? auth.jwt : "",
+  isAuthen :auth ? true : false,
+  isAdmin: auth.user.role.type === "admin"
 }
 
 export default new Vuex.Store({
@@ -30,8 +30,9 @@ export default new Vuex.Store({
         state.isAdmin = false
       },
       update(state, data){
-        state.user.items = data
-      }
+        state.user.items = data.items
+        state.user.point_now = data.point_now
+      },
   },
   actions: {
       async login({commit}, { user, password }){

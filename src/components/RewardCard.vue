@@ -42,12 +42,14 @@ export default {
         let historyRewardPayload= {
           name_user: this.user.username,
           name_award: this.rewardInput.name,
-          date: dateLocal
+          date: dateLocal,
+          point: this.rewardInput.point
         }
 
         this.user.point_now -= this.rewardInput.point
         let payload = {
           id: this.user.id,
+          items: this.user.items,
           point_now: this.user.point_now
         }
         
@@ -62,6 +64,9 @@ export default {
         await AuthUser.dispatch("updatePoint", payload)
         await HistoryRewardApi.dispatch("updateNewHistory", historyRewardPayload)
         await AwardApi.dispatch("editAward", rewardPayload)
+        await this.$swal("Got reward!!!","","success")
+
+        location.reload()
       }
       else{
         this.$swal('Not enough point', '', 'error')
