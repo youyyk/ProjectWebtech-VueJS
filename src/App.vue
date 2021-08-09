@@ -8,7 +8,6 @@
               <router-link v-if="isAuthen() && isAdmin()" class="navbar-item" to="/admin/board">Admin-Board</router-link>
               <router-link v-if="isAuthen() && isAdmin()" class="navbar-item" to="/admin/items">Admin-Edit-Items</router-link>
               <router-link v-if="isAuthen() && isAdmin()" class="navbar-item" to="/admin/awards">Admin-Edit-Awards</router-link>
-            
           </template>
           <template #end>
               <b-navbar-item tag="div">
@@ -40,7 +39,6 @@
                         <router-link class="navbar-item"  to="/signUp"><strong>Sign Up</strong></router-link>
                         </a>
                       </div>
-
                       <div v-if="!isAuthen()">
                         <a class="button is-light">
                           <router-link class="navbar-item"  to="/login"><strong>Login</strong></router-link>
@@ -70,6 +68,7 @@ export default {
         admin: false,
       }
   },
+
   created(){
     this.fetchCurrentUser()
   },

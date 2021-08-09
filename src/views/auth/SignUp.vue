@@ -1,7 +1,8 @@
 <template>
+<div>
+  <img src="https://media.wired.com/photos/5c9040ee4950d24718d6da99/master/pass/shoppingcart-1066110386.jpg" alt="LA" style="width:100%">
   <div class="signup-box">
-    
-    <p>Sign up</p>
+    <h>Sign up</h>
         <section>
             <!--email-->
             <div class="user-box">
@@ -29,6 +30,7 @@
             <button @click="signUp"><strong>Sign Up</strong></button>
   </section>
   </div>
+</div>
 </template>
 
 <script>
@@ -82,7 +84,9 @@ export default {
 
 <style scoped lang="scss">
 
-p {
+
+
+h {
   letter-spacing: 0.05em;
   font-size: 250%;
   font-family: inherit;
@@ -94,13 +98,15 @@ p {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 30%;
+  width: 35%;
+  height: 70%;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: rgba(116, 29, 138, 0.5);
+  background: rgba(185, 123, 123, 0.836);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(214, 104, 14, 0.6);
   border-radius: 10px;
+  margin-top: 3%;
 }
 
 
@@ -140,7 +146,7 @@ p {
 }
 
 section button{
-    cursor: pointer;
+  cursor: pointer;
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -150,8 +156,9 @@ section button{
   text-transform: uppercase;
   overflow: hidden;
   transition: .5s;
-  margin-top: 40px;
-  letter-spacing: 4px
+  margin-top: 12%;
+  letter-spacing: 4px;
+  width: 45%;
 }
 
 button:hover {
@@ -163,5 +170,7 @@ button:hover {
               0 0 50px #03e9f4,
               0 0 100px #03e9f4;
 }
+
+
 </style>
 

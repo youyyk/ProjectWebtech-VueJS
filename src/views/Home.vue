@@ -5,7 +5,6 @@
       <item-card v-if="item.status" :itemInput="item"></item-card>
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -36,5 +35,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.bg{
+  background-color: lightslategrey;
+}
 </style>

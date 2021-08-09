@@ -1,35 +1,36 @@
 <template>
-    <div class="overlay">
-        <div class="background">
+<div class="background">
         <form @submit.prevent="login">
-            <div class="con">
-                <header class="head-form">
-                    <h2>Log In</h2>
-                        <p>login here using your user and password</p>
-                </header>
-                <br>
+            <header class="head-form">
+                <h2>Log In</h2>
+                    <p>login here using your user and password</p>
+            </header>
+            <br>
 
-                <div class="field-set">
-                    <span class="input-item">
-                        <i class="fa fa-user-circle"></i>
-                    </span>
-                <input class="form-input" id="txt-input" v-model="form.user" type="text" placeholder="user" required>    
-                <br>
-           <!-- Password -->
+            <div class="field-set">
                 <span class="input-item">
-                    <i class="fa fa-key"></i>
+                    <i class="fa fa-user-circle"></i>
                 </span>
-            <!-- Password Input -->
-                <input class="form-input" type="password" v-model="form.password" placeholder="password" id="pwd"  name="password" required>
-            <!--button LogIn -->
+            <input class="form-input" id="txt-input" v-model="form.user" type="text" placeholder="user" required>    
+            <br>
+        <!-- Password -->
+            <span class="input-item">
+                <i class="fa fa-key"></i>
+            </span>
+        <!-- Password Input -->
+            <input class="form-input" type="password" v-model="form.password" placeholder="password" id="pwd"  name="password" required>
+        <!--button LogIn -->
             <div>
                 <button type="submit"> Log In </button>
             </div>
             </div>
-            </div>
         </form>
-        </div>
-    </div>
+        <footer class="site-footer">
+            <div class="footer-inside">
+                <p class="sub">LOGIN AND SHOPPING NOW !!!</p>
+            </div>
+        </footer>
+</div>
 </template>
 
 <script>
@@ -61,9 +62,27 @@ export default {
 
 <style scoped lang="scss">
 
+.sub{
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    display: block;
+    font-family: inherit;
+    font-size: 80px;
+    color: #ff7a18;
+}
+
+.site-footer {
+    background-color: rgb(0, 0, 0);
+    height: 100;
+}
 .background {
-    background-image: linear-gradient(-225deg, #e4c5eb 0%, #FFE6FA 100%);
-    background-image: linear-gradient(to top, #e1c0e7 0%, #fad9ba 100%);
+    background-image: url(https://i.pinimg.com/564x/4a/38/7b/4a387bda853bca3782d73234c786a150.jpg);
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: 5% 60%;
+    background-repeat: no-repeat;
 }
 
 
@@ -72,10 +91,11 @@ form {
     min-height: 50px;
     height: auto;
     border-radius: 5px;
-    margin: 5% auto;
-    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+    margin: 2% auto;
+    box-shadow: 0 9px 50px hsla(323, 95%, 47%, 0.31);
     padding: 2%;
-    background-image: linear-gradient(-225deg, #e1c1f0 50%, #f8debb 50%);
+    background-image: linear-gradient(-225deg, #d693f7 50%, #e4be8d 50%);
+    background-repeat: no-repeat;
 }
 
 header {
@@ -95,7 +115,7 @@ header p {
 }
 
 .input-item {
-    background: #fff;
+    background: rgb(112, 106, 112);
     color: #333;
     padding: 14.5px 0px 15px 9px;
     border-radius: 5px 0px 0px 5px;
@@ -137,7 +157,7 @@ button {
     height: 50px;
   
     padding: 0 20px;
-    background: #fff;
+    background: rgb(255, 255, 255);
     border-radius: 5px;
     
     outline: none;
@@ -179,5 +199,6 @@ button:hover {
         transform: translateY(5px);
     }
 }
+
 
 </style>

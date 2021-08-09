@@ -14,7 +14,7 @@
       <div class="content">
         <div class="text">{{itemInput.explain}}</div>
         <br>
-        <div class="text">{{itemInput.price}} Bath</div>
+        <div class="text">{{itemInput.price}} Baht</div>
         <br>
         <div>
             <b-button v-if="isAuthen()" @click="AddItemtoCart()" type="is-success">Add to Cart</b-button>
@@ -76,6 +76,12 @@ export default {
   position: relative;
   float: left;
   margin-left: 47px;
+  background-color: rgb(78, 79, 82);
+}
+
+.card-content{
+  background-color: blanchedalmond;
+
 }
 .media{
   padding-left: -10px;

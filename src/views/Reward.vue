@@ -1,8 +1,13 @@
 <template>
   <div class="reward">
-    <h1>Reward</h1>
-    <h1>Your Point {{ this.point_now
-       }}</h1>  
+      <footer class="site-footer">
+          <div class="footer-inside">
+            <h1 class="text"> Reward</h1>
+            <h1>Your Point {{ this.point_now}}</h1>
+          </div>
+      </footer>
+      <div class="bg">
+      </div>
     <div v-for="(reward, index) in rewardsDummy" :key="index">
       <reward-card v-if="reward.status && reward.stock > 0" :rewardInput="reward"></reward-card>
     </div>
@@ -44,6 +49,23 @@ export default {
 
 </script>
 
-<style>
+<style scoped lang="scss">
 
+.text{
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    display: block;
+    font-family: inherit;
+    font-size: 40px;
+    color: #ffffff;
+    margin-top: 0%;
+}
+
+.site-footer {
+    background-color: rgb(241, 125, 58);
+    height: 100;
+    width: 100%;
+}
 </style>
