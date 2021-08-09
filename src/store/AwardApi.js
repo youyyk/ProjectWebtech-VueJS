@@ -71,6 +71,12 @@ export default new Vuex.Store({
       commit('fetch', {res})
       console.log("Fetch Award By ID API");
       return res.data[0]
+    },
+    async fetchAwardByName({commit}, payload){
+      let res = await Axios.get(api_endpoint+"/awards?"+"name_in="+payload)
+      commit('fetch', {res})
+      console.log("Fetch Award By NAME API");
+      return res.data[0]
     }
   },
   modules: {

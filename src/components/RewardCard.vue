@@ -42,7 +42,8 @@ export default {
         let historyRewardPayload= {
           name_user: this.user.username,
           name_award: this.rewardInput.name,
-          date: dateLocal
+          date: dateLocal,
+          point: thisl.rewardInput.point
         }
 
         this.user.point_now -= this.rewardInput.point
