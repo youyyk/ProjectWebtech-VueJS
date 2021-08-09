@@ -11,7 +11,7 @@ const initialState = {
     user: auth ? auth.user : "",
     jwt: auth ? auth.jwt : "",
     isAuthen :auth ? true : false,
-    isAdmin: false
+    isAdmin: false,
 }
 
 export default new Vuex.Store({

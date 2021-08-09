@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card">    
     <div class="card-image">
       <figure class="image is-4by3">
         <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
@@ -19,6 +19,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -45,5 +46,11 @@ export default {
   position: relative;
   float: left;
   margin-left: 47px;
+  background-color: rgb(78, 79, 82);
 }
+
+.card-content{
+  background-color: rgb(255, 228, 205);
+}
+
 </style>
