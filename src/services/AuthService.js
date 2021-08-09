@@ -11,15 +11,21 @@ export default {
     isAuthen(){
         return (user !== "") && (jwt !== "")
     },
-    getApiHeader(){
-        if(jwt !== ""){
-            return{
-                headers:{
-                    Authorization: `Bearer ${jwt}`
+    getApiHeader() {
+        if (this.jwt !== undefined && this.jwt !== "") {
+            return {
+                headers: {
+                    Authorization: `Bearer ${this.jwt}`
                 }
-            }      
+            }
+        } else {
+            this.jwt = JSON.parse(localStorage.getItem(auth_key)).jwt
+            return {
+                headers: {
+                    Authorization: `Bearer ${this.jwt}`
+                }
+            }
         }
-        return {}  
     },
     getUser(){
         return user
@@ -29,6 +35,16 @@ export default {
     },
     getJwt(){
         return jwt
+    },
+    getPoint_now(){
+        return user.point_now
+    },
+    getRole(){
+        try{
+            return user.role.name
+        }catch(e){
+            return
+        }
     },
     async login({ user, password }){
         try {

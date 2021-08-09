@@ -81,6 +81,7 @@ export default {
       }
       await HistoryBuyApi.dispatch("updateNewHistory", historyPayload)
 
+      await this.$swal("Success!!!","", "success")
       location.reload();
     },
     getImage(url){
