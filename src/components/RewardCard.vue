@@ -20,13 +20,15 @@
 import AuthUser from "@/store/AuthUser"
 import HistoryRewardApi from '@/store/HistoryRewardApi'
 import AwardApi from '@/store/AwardApi'
+import UserService from '@/services/UserService'
 export default {
   props:{
     rewardInput: Object
   },
   data() {
       return {
-        user: ''
+        user: '',
+        point_now: ''
       }
   },
   methods:{
@@ -35,7 +37,10 @@ export default {
     },
     async getReward(){
       this.user = AuthUser.getters.user
-      if(this.user.point_now >= this.rewardInput.point){
+      let userBySevice = await UserService.getUserById(AuthUser.getters.user.id)
+      this.point_now = userBySevice.point_now
+
+      if(this.point_now >= this.rewardInput.point){
         var today = new Date();
         var dateLocal = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
@@ -46,11 +51,11 @@ export default {
           point: this.rewardInput.point
         }
 
-        this.user.point_now -= this.rewardInput.point
+        this.point_now -= this.rewardInput.point
         let payload = {
           id: this.user.id,
           items: this.user.items,
-          point_now: this.user.point_now
+          point_now: this.point_now
         }
         
         let rewardPayload= {

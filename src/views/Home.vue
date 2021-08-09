@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <ads-slide></ads-slide>
+    {{ currentdate }}
     <div v-for="(item, index) in itemsDummy" :key="index">
       <item-card v-if="item.status" :itemInput="item"></item-card>
     </div>
@@ -20,7 +21,8 @@ export default {
   data() {
       return {
         pictureDummy: [],
-        itemsDummy: []
+        itemsDummy: [],
+        currentdate: '',
       }
   },
   created(){
